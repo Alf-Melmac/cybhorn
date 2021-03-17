@@ -1,6 +1,5 @@
 package de.inhorn.cybhorn.model;
 
-import de.inhorn.cybhorn.Subscriptiontype;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,18 +14,22 @@ public class Subscriber {
 	@Id
 	private long imsi;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "terminal_id")
 	private Terminal terminal;
 
+	@ManyToOne
+	@JoinColumn(name = "subscription_id")
+	private Subscription subscription;
 
-	//	private Subscriptiontype subscriptionType;
+	@Column(name = "seconds_called")
 	private int secondsCalled = 0;
+
+	@Column(name = "data_used")
 	private double dataUsed = 0;  //in MB
 
 	@Builder
-	public Subscriber(int mcc, int mnc, long msin, Terminal terminal, Subscriptiontype subscriptionType) {
-
+	public Subscriber(int mcc, int mnc, long msin, Terminal terminal, Subscription subscription) {
 		final int mccLength = Integer.toString(mcc).length();
 		final int mncLength = Integer.toString(mnc).length();
 		final int msinLength = Long.toString(msin).length();
@@ -38,8 +41,7 @@ public class Subscriber {
 			throw new IllegalArgumentException("Ungueltige msin");
 		}
 
-
 		this.terminal = terminal;
-//		this.subscriptionType = subscriptionType;
+		this.subscription = subscription;
 	}
 }
