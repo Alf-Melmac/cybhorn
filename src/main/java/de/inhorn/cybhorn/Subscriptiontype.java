@@ -7,7 +7,7 @@ public class Subscriptiontype{
     private int basicFee;
     private int minutesIncluded;
     private int pricePerMinute;
-    private double dataVolume;
+    private double dataVolume; // in MB
 
     public Subscriptiontype(){
 

@@ -6,7 +6,7 @@ public class Subscriber {
     private String[] IMSI = new String[3];
     private Terminaltype terminalType;
     private Subscriptiontype subscriptionType;
-    private int secondsCalled = 0;
+    private int secondsCalled = 0; 
     private double dataUsed = 0;  //in MB
 
 
