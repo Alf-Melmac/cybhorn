@@ -8,7 +8,7 @@ public class Session {
 
 
 	public Session(int pDuration, services pService, Subscriber pSubscriber) {
-		switch (service) {
+		switch (pService) {
             case DATA:
 
                 // calculate throughput
@@ -16,7 +16,7 @@ public class Session {
                 double random = pSubscriber.getTerminal().getSupportedRanTechnology().getRandom()[r];
 
                 // calculate dataUsed
-                double dataUsed = (double)pSubscriber.getTerminal().getSupportedRanTechnology().getMbit() * random * duration;
+                double dataUsed = (double)pSubscriber.getTerminal().getSupportedRanTechnology().getMbit() * random * pDuration;
 
                 if(dataUsed +  pSubscriber.getDataUsed() > pSubscriber.getSubscription().getDataVolume()) throw new IllegalArgumentsException("not enough data volume left");
                 else pSubscriber.setDataUsed(pSubscriber.getDataUsed() + dataUsed);
@@ -24,7 +24,7 @@ public class Session {
 
             case CALL:
 
-				pSubscriber.setSecondsCalled(pSubscriber.getSecondsCalled + duration);
+				pSubscriber.setSecondsCalled(pSubscriber.getSecondsCalled + pDuration);
 				break;
 
 			default:
