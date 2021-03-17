@@ -29,7 +29,7 @@ public class Subscriber {
 	private double dataUsed = 0;  //in MB
 
 	@Builder
-	public Subscriber(int mcc, int mnc, long msin, Terminal terminal, Subscription subscription) {
+	public Subscriber(int mcc, int mnc, long msin, Terminal terminal, Subscription subscription, int secondsCalled, double dataUsed) {
 		final int mccLength = Integer.toString(mcc).length();
 		final int mncLength = Integer.toString(mnc).length();
 		final int msinLength = Long.toString(msin).length();

@@ -15,7 +15,13 @@ $(function () {
                 data: 'terminal.name'
             },
             {
-                data: 'terminal.supportedRanTechnology'
+                data: 'subscription.name'
+            },
+            {
+                data: 'secondsCalled'
+            },
+            {
+                data: 'dataUsed'
             }
         ]
     });

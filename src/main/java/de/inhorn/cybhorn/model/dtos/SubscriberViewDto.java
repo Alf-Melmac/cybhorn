@@ -13,4 +13,10 @@ public class SubscriberViewDto {
 	String imsi;
 
 	TerminalDto terminal;
+
+	SubscriptionDto subscription;
+
+	int secondsCalled;
+
+	double dataUsed;
 }

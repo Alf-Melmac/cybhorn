@@ -21,6 +21,9 @@ public class SubscriberAssembler {
 				.mnc(Integer.parseInt(subscriberPostDto.getMnc()))
 				.msin(Integer.parseInt(subscriberPostDto.getMsin()))
 				.terminal(TerminalAssembler.fromDto(subscriberPostDto.getTerminal()))
+				.subscription(SubscriptionAssembler.fromDto(subscriberPostDto.getSubscription()))
+				.secondsCalled(subscriberPostDto.getSecondsCalled())
+				.dataUsed(subscriberPostDto.getDataUsed())
 				.build();
 	}
 
@@ -28,6 +31,9 @@ public class SubscriberAssembler {
 		return SubscriberViewDto.builder()
 				.imsi(Long.toString(subscriber.getImsi()))
 				.terminal(TerminalAssembler.toDto(subscriber.getTerminal()))
+				.subscription(SubscriptionAssembler.toDto(subscriber.getSubscription()))
+				.secondsCalled(subscriber.getSecondsCalled())
+				.dataUsed(subscriber.getDataUsed())
 				.build();
 	}
 }
