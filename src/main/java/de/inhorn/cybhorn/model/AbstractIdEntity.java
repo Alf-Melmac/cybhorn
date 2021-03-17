@@ -17,5 +17,5 @@ public abstract class AbstractIdEntity {
 	@Id
 	@GeneratedValue
 	@Column(name = "id", nullable = false, unique = true, updatable = false)
-	private long id;
+	protected long id;
 }

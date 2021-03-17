@@ -27,7 +27,7 @@ public class Terminal extends AbstractIdEntity {
 		this.supportedRanTechnology = ranTechnology;
 	}
 
-	private enum RanTechnology {
+	public enum RanTechnology {
 		TWO_G,
 		THREE_G,
 		FOUR_G;
