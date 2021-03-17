@@ -12,8 +12,6 @@ public class Session {
 
 	public Session(int pDuration, services pService, Subscriber pSubscriber) {
 		switch (service) {
-			case DATA:
-				System.out.println(subscriber.getTerminal().getSupportedRanTechnology());
 
 				// zufallsgenerator dingens für Durchflussrate
 
