@@ -12,14 +12,17 @@ public class Session {
 
 	public Session(int pDuration, services pService, Subscriber pSubscriber) {
 		switch (service) {
+            case DATA:
 
-				// zufallsgenerator dingens für Durchflussrate
+                int r = (int)Math.random()*pSubscriber.getTerminal().getSupportedRanTechnology().getRandom().length;
+                double random = pSubscriber.getTerminal().getSupportedRanTechnology().getRandom()[r];
+                double dataUsed = (double)pSubscriber.getTerminal().getSupportedRanTechnology().getMbit() * random * duration;
 
-
+                pSubscriber.setDataUsed(pSubscriber.getDaraUsed() - dataUsed);
 				break;
 
 			case CALL:
-				System.out.println("Fridays are better.");
+				pSubscriber.setSecondsCalled(pSubscriber.getSecondsCalled - duration);
 				break;
 
 			default:
