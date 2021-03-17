@@ -2,26 +2,31 @@ package de.inhorn.cybhorn;
 
 import de.inhorn.cybhorn.model.Subscriber;
 
+import lombok.*;
+
 public class Session {
 
 	enum services {DATA, CALL}
 
-	private int duration; //in seconds
-	private services service;
-	private Subscriber subscriber;
 
 	public Session(int pDuration, services pService, Subscriber pSubscriber) {
-		switch (service) {
-			case DATA:
-				System.out.println(subscriber.getTerminal().getSupportedRanTechnology());
+		switch (pService) {
+            case DATA:
 
-				// zufallsgenerator dingens für Durchflussrate
+                // calculate throughput
+                int r = (int)Math.random()*pSubscriber.getTerminal().getSupportedRanTechnology().getRandom().length;
+                double random = pSubscriber.getTerminal().getSupportedRanTechnology().getRandom()[r];
 
+                // calculate dataUsed
+                double dataUsed = (double)pSubscriber.getTerminal().getSupportedRanTechnology().getMbits() * 8 * random * pDuration;
 
+                if(dataUsed +  pSubscriber.getDataUsed() > pSubscriber.getSubscription().getDataVolume()) throw new IllegalArgumentException("not enough data volume left");
+                else pSubscriber.setDataUsed(pSubscriber.getDataUsed() + dataUsed);
 				break;
 
-			case CALL:
-				System.out.println("Fridays are better.");
+            case CALL:
+
+				pSubscriber.setSecondsCalled(pSubscriber.getSecondsCalled() + pDuration);
 				break;
 
 			default:
