@@ -1,7 +1,7 @@
 package de.inhorn.cybhorn.assembler;
 
 import de.inhorn.cybhorn.model.Terminal;
-import de.inhorn.cybhorn.model.dto.TerminalDto;
+import de.inhorn.cybhorn.model.dtos.TerminalDto;
 import org.springframework.stereotype.Component;
 
 /**

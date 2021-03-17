@@ -1,5 +1,6 @@
 package de.inhorn.cybhorn.model;
 
+import de.inhorn.cybhorn.model.enums.RanTechnology;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,7 +19,7 @@ public class Terminal extends AbstractIdEntity {
 	@Column(name = "supported_ran")
 	@Enumerated(EnumType.STRING)
 	@NotBlank
-	private Terminal.RanTechnology supportedRanTechnology;
+	private RanTechnology supportedRanTechnology;
 
 	@Builder
 	public Terminal(@NotBlank String name,
@@ -27,9 +28,5 @@ public class Terminal extends AbstractIdEntity {
 		this.supportedRanTechnology = ranTechnology;
 	}
 
-	public enum RanTechnology {
-		TWO_G,
-		THREE_G,
-		FOUR_G;
-	}
+
 }

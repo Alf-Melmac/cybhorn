@@ -1,7 +1,7 @@
 package de.inhorn.cybhorn.assembler;
 
 import de.inhorn.cybhorn.model.Subscriber;
-import de.inhorn.cybhorn.model.dto.SubscriberDto;
+import de.inhorn.cybhorn.model.dtos.SubscriberDto;
 import org.springframework.stereotype.Component;
 
 /**

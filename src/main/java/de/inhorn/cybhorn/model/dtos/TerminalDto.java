@@ -1,6 +1,6 @@
-package de.inhorn.cybhorn.model.dto;
+package de.inhorn.cybhorn.model.dtos;
 
-import de.inhorn.cybhorn.model.Terminal;
+import de.inhorn.cybhorn.model.enums.RanTechnology;
 import lombok.Builder;
 import lombok.Value;
 
@@ -13,5 +13,5 @@ import lombok.Value;
 public class TerminalDto {
 	String name;
 
-	Terminal.RanTechnology supportedRanTechnology;
+	RanTechnology supportedRanTechnology;
 }

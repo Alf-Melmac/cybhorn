@@ -1,4 +1,4 @@
-package de.inhorn.cybhorn.model.dto;
+package de.inhorn.cybhorn.model.dtos;
 
 import lombok.Builder;
 import lombok.Value;
