@@ -3,6 +3,9 @@ $(function () {
     const $subscriptions = $('#subscriptions');
 
     $subscriptions.DataTable({
+        search: {
+            search: searchParam
+        },
         ajax: {
             url: '/subscriptions/list',
             dataSrc: ""

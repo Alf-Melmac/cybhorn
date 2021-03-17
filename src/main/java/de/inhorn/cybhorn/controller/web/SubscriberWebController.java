@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/subscribers")
 public class SubscriberWebController {
 	@GetMapping
-	public ModelAndView getStart() {
+	public ModelAndView getSubscribers() {
 		return new ModelAndView("subscribers");
 	}
 }
