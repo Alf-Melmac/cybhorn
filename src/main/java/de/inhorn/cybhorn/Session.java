@@ -16,15 +16,15 @@ public class Session {
                 double random = pSubscriber.getTerminal().getSupportedRanTechnology().getRandom()[r];
 
                 // calculate dataUsed
-                double dataUsed = (double)pSubscriber.getTerminal().getSupportedRanTechnology().getMbit() * 8 * random * pDuration;
+                double dataUsed = (double)pSubscriber.getTerminal().getSupportedRanTechnology().getMbits() * 8 * random * pDuration;
 
-                if(dataUsed +  pSubscriber.getDataUsed() > pSubscriber.getSubscription().getDataVolume()) throw new IllegalArgumentsException("not enough data volume left");
+                if(dataUsed +  pSubscriber.getDataUsed() > pSubscriber.getSubscription().getDataVolume()) throw new IllegalArgumentException("not enough data volume left");
                 else pSubscriber.setDataUsed(pSubscriber.getDataUsed() + dataUsed);
 				break;
 
             case CALL:
 
-				pSubscriber.setSecondsCalled(pSubscriber.getSecondsCalled + pDuration);
+				pSubscriber.setSecondsCalled(pSubscriber.getSecondsCalled() + pDuration);
 				break;
 
 			default:
