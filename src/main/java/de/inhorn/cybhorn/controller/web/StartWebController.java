@@ -1,4 +1,4 @@
-package de.inhorn.cybhorn.controller;
+package de.inhorn.cybhorn.controller.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @since 17.03.2021
  */
 @Controller
-public class StartController {
+public class StartWebController {
 	@GetMapping("/")
 	public ModelAndView getStart() {
 		return new ModelAndView("start");
