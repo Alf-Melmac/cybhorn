@@ -14,7 +14,6 @@ public class Subscriber {
 
         // 3 + 2 + [0;10] ODER 3 + 3 + [0;9]
         if(!(pIMSI[0].length()==3 && ( (pIMSI[1].length() == 2 && pIMSI[2].length()<11) || (pIMSI[1].length()==3 && pIMSI[2].length()<10) ))){
-
             throw new IllegalArgumentException("ungueltige IMSI");
         } 
 

@@ -18,5 +18,13 @@ public class CybhornApplication {
 		// TODO: Add to DB
 	}
 
-	
+	public static void removeSubscriber(String[] pIMSI){
+		// TODO remove subscriber from DB
+	}
+
+	public static void printSubscriber(String[] pIMSI){
+		// TODO iterate over subs and print with relevant data
+	}
+
+
 }
