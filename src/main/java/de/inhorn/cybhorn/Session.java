@@ -2,6 +2,8 @@ package de.inhorn.cybhorn;
 
 import de.inhorn.cybhorn.model.Subscriber;
 
+import lombok.*;
+
 public class Session {
 
 	enum services {DATA, CALL}
