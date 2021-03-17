@@ -1,0 +1,14 @@
+package de.inhorn.cybhorn.SubscriptionTypes;
+
+import de.inhorn.cybhorn.Subscriptiontype;
+
+public class Greenmobil_L extends Subscriptiontype{
+    private final int basicFee = 4200;
+    private final int minutesIncluded = 150;
+    private final int pricePerMinute = 4;
+    private final double dataVolume = 5000;
+
+    public Greenmobil_L(){
+        
+    }
+}

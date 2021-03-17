@@ -11,4 +11,7 @@ public class Subscriptiontype{
     public Subscriptiontype(){
         
     }
+
+
+
 }

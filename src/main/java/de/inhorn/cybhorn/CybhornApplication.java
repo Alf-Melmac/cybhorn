@@ -7,7 +7,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CybhornApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CybhornApplication.class, args);
+		// SpringApplication.run(CybhornApplication.class, args);
 	}
 
+	public static void addSubscriber(String[] pIMSI, Terminaltype pTerminaltype, Subscriptiontype pSubscriptiontype){
+		// TODO: Eingabemaske
+		
+		Subscriber s = new Subscriber(pIMSI, pTerminaltype, pSubscriptiontype);
+
+		// TODO: Add to DB
+	}
+
+	
 }

@@ -6,13 +6,22 @@ public class Subscriber {
     private String[] IMSI = new String[3];
     private Terminaltype terminalType;
     private Subscriptiontype subscriptionType;
-    private int secondsCalled;
-    private double dataUsed;  //in MB
+    private int secondsCalled = 0;
+    private double dataUsed = 0;  //in MB
 
 
-    public Subscriber(String[] pIMSI, Terminaltype pTerminaltype){
+    public Subscriber(String[] pIMSI, Terminaltype pTerminaltype, Subscriptiontype pSubscriptiontype){
+
+        // 3 + 2 + [0;10] ODER 3 + 3 + [0;9]
+        if(!(pIMSI[0].length()==3 && ( (pIMSI[1].length() == 2 && pIMSI[2].length()<11) || (pIMSI[1].length()==3 && pIMSI[2].length()<10) ))){
+
+            throw new IllegalArgumentException("ungueltige IMSI");
+        } 
+
+
         IMSI = pIMSI;
         terminalType = pTerminaltype;
+        subscriptionType = pSubscriptiontype;
     }
 
     public void setSecondsCalled(int set){
@@ -35,7 +44,7 @@ public class Subscriber {
         subscriptionType = set;
     }
 
-    public void clearAll(){
+    public void reset(){
 
     }
 
