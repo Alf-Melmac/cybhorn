@@ -9,12 +9,8 @@ import lombok.Value;
  */
 @Builder
 @Value
-public class SubscriberDto {
-	String mcc;
-
-	String mnc;
-
-	String msin;
+public class SubscriberViewDto {
+	String imsi;
 
 	TerminalDto terminal;
 }

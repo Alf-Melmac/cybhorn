@@ -20,4 +20,11 @@ public class TerminalAssembler {
 				.ranTechnology(terminalDto.getSupportedRanTechnology())
 				.build();
 	}
+
+	public static TerminalDto toDto(Terminal terminal) {
+		return TerminalDto.builder()
+				.name(terminal.getName())
+				.supportedRanTechnology(terminal.getSupportedRanTechnology())
+				.build();
+	}
 }
