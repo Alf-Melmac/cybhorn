@@ -20,7 +20,7 @@ public class SubscriberService {
 	private final SubscriberRepository subscriberRepository;
 
 	public Subscriber createSubscriber(SubscriberPostDto dto) {
-		Subscriber subscriber = SubscriberAssembler.fromDto(dto);
+		final Subscriber subscriber = SubscriberAssembler.fromDto(dto);
 
 		return subscriberRepository.save(subscriber);
 	}
