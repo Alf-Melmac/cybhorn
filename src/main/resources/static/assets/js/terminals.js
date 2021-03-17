@@ -15,7 +15,7 @@ $(function () {
                 data: 'name'
             },
             {
-                data: 'supportedRanTechnology'
+                data: 'supportedRanTechnologyName'
             }
         ]
     });

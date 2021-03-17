@@ -30,10 +30,12 @@ public class Subscriber {
 
 	@Builder
 	public Subscriber(int mcc, int mnc, long msin, Terminal terminal, Subscription subscription, int secondsCalled, double dataUsed) {
-		final int mccLength = Integer.toString(mcc).length();
-		final int mncLength = Integer.toString(mnc).length();
-		final int msinLength = Long.toString(msin).length();
-		if (mccLength != 3) {
+		final String mccString = Integer.toString(mcc);
+		final String mncString = Integer.toString(mnc);
+		final int mncLength = mncString.length();
+		final String msinString = Long.toString(msin);
+		final int msinLength = msinString.length();
+		if (mccString.length() != 3) {
 			throw new IllegalArgumentException("Ungueltige mcc");
 		} else if (mncLength < 2 || mncLength > 3) {
 			throw new IllegalArgumentException("Ungueltige mnc");
@@ -41,7 +43,12 @@ public class Subscriber {
 			throw new IllegalArgumentException("Ungueltige msin");
 		}
 
+		this.imsi = Long.parseLong(mccString + mncString + msinString);
+		//TODO name
+
 		this.terminal = terminal;
 		this.subscription = subscription;
+		this.secondsCalled = secondsCalled;
+		this.dataUsed = dataUsed;
 	}
 }

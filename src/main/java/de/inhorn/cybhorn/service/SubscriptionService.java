@@ -6,8 +6,11 @@ import de.inhorn.cybhorn.model.dtos.SubscriptionDto;
 import de.inhorn.cybhorn.repository.SubscriptionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author Alf
@@ -21,5 +24,9 @@ public class SubscriptionService {
 
 	public Subscription createSubscription(SubscriptionDto dto) {
 		return subscriptionRepository.save(SubscriptionAssembler.fromDto(dto));
+	}
+
+	public List<Subscription> findAllOrdered() {
+		return subscriptionRepository.findAll(Sort.by("name"));
 	}
 }

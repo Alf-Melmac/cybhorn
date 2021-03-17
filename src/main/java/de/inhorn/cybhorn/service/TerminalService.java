@@ -6,8 +6,11 @@ import de.inhorn.cybhorn.model.dtos.TerminalDto;
 import de.inhorn.cybhorn.repository.TerminalRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author Alf
@@ -23,4 +26,7 @@ public class TerminalService {
 		return terminalRepository.save(TerminalAssembler.fromDto(dto));
 	}
 
+	public List<Terminal> findAllOrdered() {
+		return terminalRepository.findAll(Sort.by("name"));
+	}
 }

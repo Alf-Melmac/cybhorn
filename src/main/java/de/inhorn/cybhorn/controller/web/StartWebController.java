@@ -17,9 +17,9 @@ public class StartWebController {
 	public ModelAndView getStart() {
 		ModelAndView mav = new ModelAndView("start");
 
-		mav.addObject("subscribersUrl", linkTo(methodOn(SubscriberWebController.class).getSubscribers()));
-		mav.addObject("subscriptionsUrl", linkTo(methodOn(SubscriptionWebController.class).getSubscriptions("")));
-		mav.addObject("terminalsUrl", linkTo(methodOn(TerminalWebController.class).getTerminals("")));
+		mav.addObject("subscribersUrl", linkTo(methodOn(SubscriberWebController.class).getSubscribers()).toUri().toString());
+		mav.addObject("subscriptionsUrl", linkTo(methodOn(SubscriptionWebController.class).getSubscriptions("")).toUri().toString());
+		mav.addObject("terminalsUrl", linkTo(methodOn(TerminalWebController.class).getTerminals("")).toUri().toString());
 
 		return mav;
 	}

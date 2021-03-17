@@ -3,14 +3,13 @@ package de.inhorn.cybhorn.controller;
 import de.inhorn.cybhorn.assembler.SubscriptionAssembler;
 import de.inhorn.cybhorn.model.dtos.SubscriptionDto;
 import de.inhorn.cybhorn.repository.SubscriptionRepository;
+import de.inhorn.cybhorn.service.SubscriptionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author Alf
@@ -21,9 +20,15 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SubscriptionController {
 	private final SubscriptionRepository subscriptionRepository;
+	private final SubscriptionService subscriptionService;
 
 	@GetMapping("/list")
 	public List<SubscriptionDto> getAllSubscribers() {
-		return subscriptionRepository.findAll().stream().map(SubscriptionAssembler::toDto).collect(Collectors.toList());
+		return SubscriptionAssembler.toDtoList(subscriptionRepository.findAll());
+	}
+
+	@PostMapping
+	public SubscriptionDto postSubscription(@Valid @RequestBody SubscriptionDto subscription) {
+		return SubscriptionAssembler.toDto(subscriptionService.createSubscription(subscription));
 	}
 }

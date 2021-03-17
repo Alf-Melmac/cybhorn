@@ -22,8 +22,8 @@ public class Terminal extends AbstractIdEntity {
 	private RanTechnology supportedRanTechnology;
 
 	@Builder
-	public Terminal(@NotBlank String name,
-					@NonNull RanTechnology ranTechnology) {
+	public Terminal(long id, String name, RanTechnology ranTechnology) {
+		this.id = id;
 		this.name = name;
 		this.supportedRanTechnology = ranTechnology;
 	}

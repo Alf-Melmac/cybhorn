@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Add Subscription</title>
+
+	<meta th:replace="fragments/general.html :: head"/>
+</head>
+<body>
+<nav th:replace="fragments/general.html :: nav"></nav>
+
+<section class="content-section">
+	<div class="container mb-4">
+		<h1>New Subscription</h1>
+	</div>
+	<div class="container">
+		<form id="wizard" th:data-saveurl="${saveUrl}">
+			<div class="form-row">
+				<div class="form-group col-md-12">
+					<label for="name">Name</label>
+					<input id="name" class="form-control" type="text" placeholder="Subscription name" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-3">
+					<label for="basicFee">Basic Fee</label>
+					<div class="input-group">
+						<input id="basicFee" class="form-control" type="number" required>
+						<div class="input-group-append">
+							<span class="input-group-text">€</span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="secondsIncluded">Seconds Included</label>
+					<input id="secondsIncluded" class="form-control" type="number" value="0" required>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="pricePerSecond">Price per second</label>
+					<div class="input-group">
+						<input id="pricePerSecond" class="form-control" type="number" required>
+						<div class="input-group-append">
+							<span class="input-group-text">€</span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="dataVolume">Data volume</label>
+					<input id="dataVolume" class="form-control" type="number" required>
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script th:src="@{/assets/js/wizardHelper.js}"></script>
+</body>
+</html>

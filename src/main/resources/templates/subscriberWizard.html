@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Add Subscriber</title>
+
+	<meta th:replace="fragments/general.html :: head"/>
+</head>
+<body>
+<nav th:replace="fragments/general.html :: nav"></nav>
+
+<section class="content-section">
+	<div class="container mb-4">
+		<h1>New Subscriber</h1>
+	</div>
+	<div class="container">
+		<form id="wizard" th:data-saveurl="${saveUrl}">
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label for="mcc">MCC</label>
+					<input id="mcc" class="form-control" type="number" placeholder="3 numbers" required>
+				</div>
+				<div class="form-group col-md-2">
+					<label for="mnc">MNC</label>
+					<input id="mnc" class="form-control" type="number" placeholder="2-3 numbers" required>
+				</div>
+				<div class="form-group col-md-8">
+					<label for="msin">MSIN</label>
+					<input id="msin" class="form-control" type="number" placeholder="9-10 numbers" required>
+				</div>
+			</div>
+			<!--			TODO TERMINAL AND SUBSCRIPTION SAVB-->
+			<div class="form-row">
+				<div class="form-group col-md-12">
+					<label for="terminal">Terminal</label>
+					<select id="terminal" class="form-control custom-select">
+						<option selected disabled>Select...</option>
+						<option th:each="terminal : ${terminalList}"
+						        th:text="${terminal.getName()}"></option>
+					</select>
+					<small class="form-text text-muted">
+						Is a device missing? Add <a th:href="${terminalWizardUrl}">here</a>.
+					</small>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-12">
+					<label for="subscription">Subscription</label>
+					<select id="subscription" class="form-control custom-select">
+						<option selected disabled>Select...</option>
+						<option th:each="subscription : ${subscriptionList}"
+						        th:text="${subscription.getName()}"></option>
+					</select>
+					<small class="form-text text-muted">
+						Is a subscription missing? Add <a th:href="${subscriptionWizardUrl}">here</a>.
+					</small>
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script th:src="@{/assets/js/wizardHelper.js}"></script>
+</body>
+</html>

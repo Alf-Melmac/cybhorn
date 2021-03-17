@@ -1,22 +1,21 @@
 package de.inhorn.cybhorn.model.dtos;
 
+import lombok.AccessLevel;
 import lombok.Builder;
-import lombok.Value;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 /**
  * @author Alf
  * @since 17.03.2021
  */
 @Builder
-@Value
+@RequiredArgsConstructor(access = AccessLevel.PROTECTED)
+@Data
 public class SubscriberViewDto {
-	String imsi;
-
-	TerminalDto terminal;
-
-	SubscriptionDto subscription;
-
-	int secondsCalled;
-
-	double dataUsed;
+	private final String imsi;
+	private final TerminalDto terminal;
+	private final SubscriptionDto subscription;
+	private final int secondsCalled;
+	private final double dataUsed;
 }
