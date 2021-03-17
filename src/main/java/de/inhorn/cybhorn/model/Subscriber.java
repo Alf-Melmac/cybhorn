@@ -44,4 +44,8 @@ public class Subscriber {
 		this.terminal = terminal;
 		this.subscription = subscription;
 	}
+
+	public void reset() {
+		//TODO
+	}
 }
