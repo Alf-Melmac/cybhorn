@@ -9,6 +9,6 @@ public class Subscriptiontype{
     private double dataVolume;
 
     public Subscriptiontype(){
-
+        
     }
 }
