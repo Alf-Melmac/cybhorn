@@ -10,10 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
  * @since 17.03.2021
  */
 @Controller
-@RequestMapping("/terminals")
-public class TerminalWebController {
+@RequestMapping("/subscriptions")
+public class SubscriptionWebController {
 	@GetMapping
-	public ModelAndView getTerminals() {
-		return new ModelAndView("terminals");
+	public ModelAndView getSubscriptions() {
+		return new ModelAndView("subscriptions");
 	}
 }
