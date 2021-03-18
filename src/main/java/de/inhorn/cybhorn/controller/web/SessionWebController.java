@@ -1,7 +1,8 @@
 package de.inhorn.cybhorn.controller.web;
 
+import de.inhorn.cybhorn.assembler.SubscriberAssembler;
 import de.inhorn.cybhorn.controller.SessionController;
-import de.inhorn.cybhorn.service.SessionService;
+import de.inhorn.cybhorn.service.SubscriberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,12 +21,14 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RequestMapping("/sessions")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SessionWebController {
-	private final SessionService sessionService;
+	private final SubscriberService subscriberService;
 
 	@GetMapping("/new")
 	public ModelAndView getSessionWizard() {
 		final ModelAndView mav = new ModelAndView("sessionWizard");
+		mav.addObject("subscriberList", SubscriberAssembler.toDtoList(subscriberService.findAllOrdered()));
 		mav.addObject("saveUrl", linkTo(methodOn(SessionController.class).postSession(null)).toUri().toString());
+		mav.addObject("overviewUrl", linkTo(methodOn(StartWebController.class).getStart()).toUri().toString());
 		return mav;
 	}
 }
