@@ -13,10 +13,15 @@ public class Invoice {
     }
 
     private void calculateCosts() {
-        int secondsToBePlayed = subscriber.getSecondsCalled() - subscriber.getSubscription().getSecondsIncluded();
-        this.totalcosts = Math.ceil(secondsToBePlayed / 60) * (subscriber.getSubscription().getPricePerSecond()*60);
+        // calculate the seconds to be payed
+        int secondsToBePayed = subscriber.getSecondsCalled() - subscriber.getSubscription().getSecondsIncluded();
+
+        // calculate the costs of these seconds per started minute
+        this.totalcosts = Math.ceil(secondsToBePayed / 60) * (subscriber.getSubscription().getPricePerSecond()*60);
         if(totalcosts < 0) {
             totalcosts = 0;
         }
+        // add basic fee for subscription
+        totalcosts += subscriber.getSubscription().getBasicFee();
     }
 }
