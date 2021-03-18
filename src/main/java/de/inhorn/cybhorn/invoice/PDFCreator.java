@@ -1,7 +1,5 @@
 package de.inhorn.cybhorn.invoice;
 
-import de.inhorn.cybhorn.model.Subscriber;
-
 import java.io.IOException;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -24,7 +22,7 @@ public class PDFCreator {
         float sizeText = 10f;
 
         try {
-            PdfWriter.getInstance(document, new FileOutputStream(new File(FILE_NAME)));
+            PdfWriter.getInstance(document, new FileOutputStream(FILE_NAME));
             document.open();
 
             // Logo & companyname
