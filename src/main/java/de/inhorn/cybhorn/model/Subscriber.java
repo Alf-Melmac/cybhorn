@@ -43,11 +43,11 @@ public class Subscriber {
 		final String msinString = Long.toString(msin);
 		final int msinLength = msinString.length();
 		if (mccString.length() != 3) {
-			throw new IllegalArgumentException("Ungueltige mcc");
+			throw BusinessRuntimeException.builder().title("Invalid MCC").build();
 		} else if (mncLength < 2 || mncLength > 3) {
-			throw new IllegalArgumentException("Ungueltige mnc");
+			throw BusinessRuntimeException.builder().title("Invalid MNC").build();
 		} else if (msinLength < 9 || msinLength > 10) {
-			throw new IllegalArgumentException("Ungueltige msin");
+			throw BusinessRuntimeException.builder().title("Invalid MSIN").build();
 		}
 
 		this.imsi = Long.parseLong(mccString + mncString + msinString);
@@ -60,19 +60,26 @@ public class Subscriber {
 		this.dataUsed = dataUsed;
 	}
 
+	/**
+	 * Adds the given amount to the seconds called
+	 *
+	 * @param seconds to add
+	 */
 	public void addSecondsCalled(int seconds) {
 		secondsCalled += seconds;
 	}
 
+	/**
+	 * Adds the given amount to the used data
+	 *
+	 * @param data to add
+	 * @throws BusinessRuntimeException if data volume is exceeded
+	 */
 	public void useData(double data) {
 		final double dataUsage = dataUsed + data;
 		if (dataUsage > subscription.getDataVolume()) {
 			throw BusinessRuntimeException.builder().title("Data volume depleted.").build();
 		}
 		dataUsed = dataUsage;
-	}
-
-	public void reset() {
-		//TODO
 	}
 }

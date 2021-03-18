@@ -4,7 +4,6 @@ import de.inhorn.cybhorn.assembler.SubscriberAssembler;
 import de.inhorn.cybhorn.model.dtos.SubscriberEditDto;
 import de.inhorn.cybhorn.model.dtos.SubscriberPostDto;
 import de.inhorn.cybhorn.model.dtos.SubscriberViewDto;
-import de.inhorn.cybhorn.repository.SubscriberRepository;
 import de.inhorn.cybhorn.service.SubscriberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +22,11 @@ import java.util.List;
 @RequestMapping("/subscribers")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SubscriberController {
-	private final SubscriberRepository subscriberRepository;
 	private final SubscriberService subscriberService;
 
 	@GetMapping("/list")
 	public List<SubscriberViewDto> getAllSubscribers() {
-		return SubscriberAssembler.toDtoList(subscriberRepository.findAll());
+		return SubscriberAssembler.toDtoList(subscriberService.findAll());
 	}
 
 	@PostMapping
@@ -44,7 +42,7 @@ public class SubscriberController {
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteSubscriber(@PathVariable long id) {
-		subscriberRepository.deleteById(id);
+		subscriberService.deleteById(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

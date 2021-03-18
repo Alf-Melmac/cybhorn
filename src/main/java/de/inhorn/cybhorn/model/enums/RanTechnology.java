@@ -4,10 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
+ * Representation of available RAN technologies and the achievable throughput as signal qualities
+ *
  * @author Alf
  * @since 17.03.2021
  */
-
 @Getter
 @AllArgsConstructor
 public enum RanTechnology {

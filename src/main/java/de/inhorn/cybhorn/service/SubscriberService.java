@@ -29,6 +29,13 @@ public class SubscriberService {
 	private final TerminalService terminalService;
 	private final SubscriptionService subscriptionService;
 
+	public List<Subscriber> findAll() {
+		return subscriberRepository.findAll();
+	}
+
+	/**
+	 * @return alls subscribers ordered by last name
+	 */
 	public List<Subscriber> findAllOrdered() {
 		return subscriberRepository.findAll(Sort.by("lastName"));
 	}
@@ -43,6 +50,12 @@ public class SubscriberService {
 		return subscriberRepository.save(subscriber);
 	}
 
+	/**
+	 * Updates the {@link Subscriber} with the given values from the dto, if present. Found by id of dto
+	 *
+	 * @param dto with id and values to update
+	 * @return updated subscriber
+	 */
 	public Subscriber updateSubscriber(@NonNull SubscriberEditDto dto) {
 		Subscriber subscriber = findByImsi(dto.getImsi());
 
@@ -52,5 +65,9 @@ public class SubscriberService {
 		DtoUtils.ifPresent(dto.getSubscriptionId(), subscription -> subscriber.setSubscription(subscriptionService.findById(subscription)));
 
 		return subscriber;
+	}
+
+	public void deleteById(long id) {
+		subscriberRepository.deleteById(id);
 	}
 }

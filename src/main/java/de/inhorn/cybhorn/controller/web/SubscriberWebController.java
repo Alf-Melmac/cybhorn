@@ -36,7 +36,7 @@ public class SubscriberWebController {
 		mav.addObject("deleteUrl", linkTo(methodOn(SubscriberController.class).deleteSubscriber(Long.MAX_VALUE))
 				.toUri()
 				.toString()
-		.replace(Long.toString(Long.MAX_VALUE), "{id}"));
+				.replace(Long.toString(Long.MAX_VALUE), "{id}"));
 		mav.addObject("editUrl", linkTo(methodOn(SubscriberController.class).updateSubscriber(Long.MAX_VALUE, null))
 				.toUri()
 				.toString()

@@ -32,7 +32,7 @@ public class TerminalWebController {
 		mav.addObject("deleteUrl", linkTo(methodOn(TerminalController.class).deleteTerminal(Long.MAX_VALUE))
 				.toUri()
 				.toString()
-		.replace(Long.toString(Long.MAX_VALUE), "{id}"));
+				.replace(Long.toString(Long.MAX_VALUE), "{id}"));
 		mav.addObject("editUrl", linkTo(methodOn(TerminalController.class).updateTerminal(Long.MAX_VALUE, null))
 				.toUri()
 				.toString()

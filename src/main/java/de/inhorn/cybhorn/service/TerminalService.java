@@ -1,10 +1,13 @@
 package de.inhorn.cybhorn.service;
 
 import de.inhorn.cybhorn.assembler.TerminalAssembler;
+import de.inhorn.cybhorn.exception.BusinessRuntimeException;
 import de.inhorn.cybhorn.exception.ResourceNotFoundException;
+import de.inhorn.cybhorn.model.Subscriber;
 import de.inhorn.cybhorn.model.Terminal;
 import de.inhorn.cybhorn.model.dtos.TerminalDto;
 import de.inhorn.cybhorn.model.enums.RanTechnology;
+import de.inhorn.cybhorn.repository.SubscriberRepository;
 import de.inhorn.cybhorn.repository.TerminalRepository;
 import de.inhorn.cybhorn.util.DtoUtils;
 import lombok.NonNull;
@@ -26,7 +29,13 @@ import java.util.Random;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class TerminalService {
 	private final TerminalRepository terminalRepository;
+	private final SubscriberRepository subscriberRepository;
 
+	/**
+	 * Creates a new terminal using the {@link TerminalAssembler#fromDto(TerminalDto)} method
+	 *
+	 * @return the new terminal
+	 */
 	public Terminal createTerminal(TerminalDto dto) {
 		return terminalRepository.save(TerminalAssembler.fromDto(dto));
 	}
@@ -35,10 +44,19 @@ public class TerminalService {
 		return terminalRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
 	}
 
+	/**
+	 * @return all terminals oder by name
+	 */
 	public List<Terminal> findAllOrdered() {
 		return terminalRepository.findAll(Sort.by("name"));
 	}
 
+	/**
+	 * Updates the {@link Terminal} with the given values from the dto, if present. Found by id of dto
+	 *
+	 * @param dto with id and values to update
+	 * @return updated terminal
+	 */
 	public Terminal updateTerminal(@NonNull TerminalDto dto) {
 		Terminal terminal = findById(dto.getId());
 
@@ -46,6 +64,19 @@ public class TerminalService {
 		DtoUtils.ifPresent(dto.getSupportedRanTechnology(), terminal::setSupportedRanTechnology);
 
 		return terminal;
+	}
+
+	/**
+	 * Deletes the given terminal if it isn't used by a {@link Subscriber}
+	 *
+	 * @param terminal to delete
+	 */
+	public void deleteTerminal(Terminal terminal) {
+		if (!subscriberRepository.existsByTerminal(terminal)) {
+			terminalRepository.delete(terminal);
+		} else {
+			throw BusinessRuntimeException.builder().title("Terminal is still in use by at least one subscribers").build();
+		}
 	}
 
 	/**
