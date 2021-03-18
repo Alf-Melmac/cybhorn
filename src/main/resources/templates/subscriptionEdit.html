@@ -35,9 +35,9 @@
 					<input id="secondsIncluded" class="form-control" type="number" required th:value="${subscription.getSecondsIncluded()/60}">
 				</div>
 				<div class="form-group col-md-3">
-					<label for="pricePerMinute">Price per second</label>
+					<label for="pricePerMinute">Price per minute</label>
 					<div class="input-group">
-						<input id="pricePerMinute" class="form-control" type="number" required th:value="${subscription.getPricePerMinute()}">
+						<input id="pricePerMinute" class="form-control" type="number" step="0.01" required th:value="${subscription.getPricePerMinute()}">
 						<div class="input-group-append">
 							<span class="input-group-text">€</span>
 						</div>
