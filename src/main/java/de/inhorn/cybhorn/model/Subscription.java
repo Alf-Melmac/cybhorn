@@ -29,12 +29,12 @@ public class Subscription extends AbstractIdEntity {
 	private double dataVolume; // in MB
 
 	@Builder
-	public Subscription(long id, String name, int basicFee, int secondsIncluded, double pricePerSecond, double dataVolume) {
+	public Subscription(long id, String name, int basicFee, int secondsIncluded, double pricePerMinute, double dataVolume) {
 		this.id = id;
 		this.name = name;
 		this.basicFee = basicFee;
 		this.secondsIncluded = secondsIncluded;
-		this.pricePerSecond = pricePerSecond;
+		this.pricePerMinute = pricePerMinute;
 		this.dataVolume = dataVolume;
 	}
 

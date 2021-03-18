@@ -23,7 +23,7 @@ public class SubscriptionAssembler {
 				.name(subscriptionDto.getName())
 				.basicFee(subscriptionDto.getBasicFee())
 				.secondsIncluded(subscriptionDto.getSecondsIncluded())
-				.pricePerSecond(subscriptionDto.getPricePerSecond())
+				.pricePerMinute(subscriptionDto.getPricePerMinute())
 				.dataVolume(subscriptionDto.getDataVolume())
 				.build();
 	}
@@ -38,7 +38,7 @@ public class SubscriptionAssembler {
 				.name(subscription.getName())
 				.basicFee(subscription.getBasicFee())
 				.secondsIncluded(subscription.getSecondsIncluded())
-				.pricePerSecond(subscription.getPricePerSecond())
+				.pricePerMinute(subscription.getPricePerMinute())
 				.dataVolume(subscription.getDataVolume())
 				.build();
 	}
