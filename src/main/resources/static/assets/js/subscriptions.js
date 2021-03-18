@@ -27,7 +27,10 @@ $(function () {
                 }
             },
             {
-                data: 'pricePerMinute'
+                data: 'pricePerMinute',
+                render: function (data) {
+                    return data + " €";
+                }
             },
             {
                 data: 'dataVolume',
