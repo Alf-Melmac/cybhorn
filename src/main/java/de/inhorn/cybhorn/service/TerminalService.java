@@ -1,6 +1,7 @@
 package de.inhorn.cybhorn.service;
 
 import de.inhorn.cybhorn.assembler.TerminalAssembler;
+import de.inhorn.cybhorn.exception.ResourceNotFoundException;
 import de.inhorn.cybhorn.model.Terminal;
 import de.inhorn.cybhorn.model.dtos.TerminalDto;
 import de.inhorn.cybhorn.repository.TerminalRepository;
@@ -24,6 +25,10 @@ public class TerminalService {
 
 	public Terminal createTerminal(TerminalDto dto) {
 		return terminalRepository.save(TerminalAssembler.fromDto(dto));
+	}
+
+	public Terminal findById(long id) {
+		return terminalRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
 	}
 
 	public List<Terminal> findAllOrdered() {
