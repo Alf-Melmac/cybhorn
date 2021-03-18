@@ -37,8 +37,11 @@ $(function () {
                         'Content-Type': 'application/json'
                     }
                 })
-                    .done($this.parents('tr').fadeOut())
+                    .done($this.parents('tr').fadeOut())    // kein Fadeout wenn nicht geloescht wird
                     .fail(response => alert(JSON.stringify(response) + '\nAction failed. Try again later\n'));
+
+                    //TODO  redirect zur Tabelle
+                    //      same for subscription 
             });
         }
     });

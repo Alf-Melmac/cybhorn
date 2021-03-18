@@ -40,11 +40,16 @@ public class TerminalController {
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteTerminal(@PathVariable long id) {
-		//TODO nur aufuehren, wenn kein User mit diesem Terminal existiert
 
-		subscriberRepository.existsByTerminal();
+		if(!subscriberRepository.existsByTerminal(terminalService.findById(id))){
 
-		terminalRepository.deleteById(id);
-		return new ResponseEntity<>(HttpStatus.OK);
+			terminalRepository.deleteById(id);
+
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			throw new IllegalArgumentException("Terminal is still in use by subscribers");
+		}
+
+
 	}
 }

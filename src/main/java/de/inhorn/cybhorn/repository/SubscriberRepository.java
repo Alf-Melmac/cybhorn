@@ -4,6 +4,7 @@ import de.inhorn.cybhorn.model.Subscriber;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import de.inhorn.cybhorn.model.Terminal;
+import de.inhorn.cybhorn.model.Subscription;
 
 /**
  * @author Alf
@@ -12,4 +13,5 @@ import de.inhorn.cybhorn.model.Terminal;
 @Repository
 public interface SubscriberRepository extends JpaRepository<Subscriber, Long> {
     boolean existsByTerminal(Terminal t);
+    boolean existsBySubscription(Subscription s);
 }
