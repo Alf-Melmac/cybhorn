@@ -26,6 +26,7 @@ public class SessionWebController {
 	public ModelAndView getSessionWizard() {
 		final ModelAndView mav = new ModelAndView("sessionWizard");
 		mav.addObject("saveUrl", linkTo(methodOn(SessionController.class).postSession(null)).toUri().toString());
+		mav.addObject("overviewUrl", linkTo(methodOn(StartWebController.class).getStart()).toUri().toString());
 		return mav;
 	}
 }

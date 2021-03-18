@@ -29,6 +29,7 @@ public class TerminalWebController {
 	public ModelAndView getTerminalWizard() {
 		ModelAndView mav = new ModelAndView("terminalWizard");
 		mav.addObject("saveUrl", linkTo(methodOn(TerminalController.class).postTerminal(null)).toUri().toString());
+		mav.addObject("overviewUrl", linkTo(methodOn(TerminalWebController.class).getTerminals("")).toUri().toString());
 		return mav;
 	}
 }

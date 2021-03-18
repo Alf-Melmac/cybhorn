@@ -45,6 +45,7 @@ public class SubscriberWebController {
 		mav.addObject("terminalWizardUrl", linkTo(methodOn(TerminalWebController.class).getTerminalWizard()));
 		mav.addObject("subscriptionWizardUrl", linkTo(methodOn(SubscriptionWebController.class).getSubscriptionWizard()));
 		mav.addObject("saveUrl", linkTo(methodOn(SubscriberController.class).postSubscriber(null)).toUri().toString());
+		mav.addObject("overviewUrl", linkTo(methodOn(SubscriberWebController.class).getSubscribers()).toUri().toString());
 		return mav;
 	}
 }

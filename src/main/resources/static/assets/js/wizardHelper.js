@@ -29,7 +29,7 @@ $(function () {
             },
             data: JSON.stringify(userInput)
         })
-            .done(savedInput => console.log(savedInput)) //TODO Redirect to overview
+            .done(() => window.location.href = $wizard.data('overviewurl'))
             .fail(response => alert(JSON.stringify(response) + '\nAction failed. Try again later\n' + JSON.stringify(event)));
     });
 });

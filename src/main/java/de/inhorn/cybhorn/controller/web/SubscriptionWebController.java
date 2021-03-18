@@ -29,6 +29,7 @@ public class SubscriptionWebController {
 	public ModelAndView getSubscriptionWizard() {
 		final ModelAndView mav = new ModelAndView("subscriptionWizard");
 		mav.addObject("saveUrl", linkTo(methodOn(SubscriptionController.class).postSubscription(null)).toUri().toString());
+		mav.addObject("overviewUrl", linkTo(methodOn(SubscriptionWebController.class).getSubscriptions("")).toUri().toString());
 		return mav;
 	}
 }
