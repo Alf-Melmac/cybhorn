@@ -20,6 +20,10 @@ public final class DtoUtils {
 		return value != 0;
 	}
 
+	private static boolean isPresent(double value) {
+		return value != 0;
+	}
+
 	private static boolean isPresent(String value) {
 		return value != null && !StringUtils.isEmptyOrWhitespace(value);
 	}
@@ -47,6 +51,12 @@ public final class DtoUtils {
 	}
 
 	public static void ifPresent(long value, Consumer<Long> consumer) {
+		if (isPresent(value)) {
+			consumer.accept(value);
+		}
+	}
+
+	public static void ifPresentDouble(double value, Consumer<Double> consumer) {
 		if (isPresent(value)) {
 			consumer.accept(value);
 		}

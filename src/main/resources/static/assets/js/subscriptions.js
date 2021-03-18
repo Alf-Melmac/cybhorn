@@ -55,15 +55,7 @@ $(function () {
                     .fail(response => alert(JSON.stringify(response) + '\nAction failed. Try again later\n'));
             });
             $(row).find('.js-edit').on('click', function () {
-                const $this = $(this);
-                $.ajax(deleteUrl.replace('{id}', $this.data('id')), {
-                    method: 'EDIT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-
-                // TODO weiterleiten zu neuem Wizard
+                window.location.href = editUrl.replace('{id}', $(this).data('id'));
             });
         }
     });
