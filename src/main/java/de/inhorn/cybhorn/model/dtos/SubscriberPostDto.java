@@ -16,8 +16,8 @@ public class SubscriberPostDto {
 	String firstName;
 	String lastName;
 
-	TerminalDto terminal;
-	SubscriptionDto subscription;
+	long terminalId;
+	long subscriptionId;
 	int secondsCalled;
 	double dataUsed;
 }

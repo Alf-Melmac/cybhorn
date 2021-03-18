@@ -1,6 +1,7 @@
 package de.inhorn.cybhorn.service;
 
 import de.inhorn.cybhorn.assembler.SubscriptionAssembler;
+import de.inhorn.cybhorn.exception.ResourceNotFoundException;
 import de.inhorn.cybhorn.model.Subscription;
 import de.inhorn.cybhorn.model.dtos.SubscriptionDto;
 import de.inhorn.cybhorn.repository.SubscriptionRepository;
@@ -28,5 +29,9 @@ public class SubscriptionService {
 
 	public List<Subscription> findAllOrdered() {
 		return subscriptionRepository.findAll(Sort.by("name"));
+	}
+
+	public Subscription findById(long id) {
+		return subscriptionRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
 	}
 }

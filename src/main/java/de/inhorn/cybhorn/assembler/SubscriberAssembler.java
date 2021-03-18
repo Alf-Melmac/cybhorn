@@ -3,6 +3,10 @@ package de.inhorn.cybhorn.assembler;
 import de.inhorn.cybhorn.model.Subscriber;
 import de.inhorn.cybhorn.model.dtos.SubscriberPostDto;
 import de.inhorn.cybhorn.model.dtos.SubscriberViewDto;
+import de.inhorn.cybhorn.service.SubscriptionService;
+import de.inhorn.cybhorn.service.TerminalService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.util.StringUtils;
 
@@ -14,8 +18,12 @@ import java.util.stream.Collectors;
  * @since 17.03.2021
  */
 @Component
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SubscriberAssembler {
-	public static Subscriber fromDto(SubscriberPostDto subscriberPostDto) {
+	private final TerminalService terminalService;
+	private final SubscriptionService subscriptionService;
+
+	public Subscriber fromDto(SubscriberPostDto subscriberPostDto) {
 		if (subscriberPostDto == null) {
 			return null;
 		}
@@ -23,11 +31,11 @@ public class SubscriberAssembler {
 		return Subscriber.builder()
 				.mcc(Integer.parseInt(subscriberPostDto.getMcc()))
 				.mnc(Integer.parseInt(subscriberPostDto.getMnc()))
-				.msin(Integer.parseInt(subscriberPostDto.getMsin()))
+				.msin(Long.parseLong(subscriberPostDto.getMsin()))
 				.firstName(subscriberPostDto.getFirstName())
 				.lastName(subscriberPostDto.getLastName())
-				.terminal(TerminalAssembler.fromDto(subscriberPostDto.getTerminal()))
-				.subscription(SubscriptionAssembler.fromDto(subscriberPostDto.getSubscription()))
+				.terminal(terminalService.findById(subscriberPostDto.getTerminalId()))
+				.subscription(subscriptionService.findById(subscriberPostDto.getSubscriptionId()))
 				.secondsCalled(subscriberPostDto.getSecondsCalled())
 				.dataUsed(subscriberPostDto.getDataUsed())
 				.build();
