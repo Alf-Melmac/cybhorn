@@ -1,6 +1,6 @@
 package de.inhorn.cybhorn.controller.web;
 
-import de.inhorn.cybhorn.controller.TerminalController;
+import de.inhorn.cybhorn.controller.SubscriptionController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,20 +15,20 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
  * @since 17.03.2021
  */
 @Controller
-@RequestMapping("/terminals")
-public class TerminalWebController {
+@RequestMapping("/subscriptions")
+public class SubscriptionWebController {
 	@GetMapping
-	public ModelAndView getTerminals(@RequestParam(required = false, defaultValue = "") String filter) {
-		ModelAndView mav = new ModelAndView("terminals");
+	public ModelAndView getSubscriptions(@RequestParam(required = false, defaultValue = "") String filter) {
+		ModelAndView mav = new ModelAndView("subscriptions");
 		mav.addObject("searchParam", filter);
-		mav.addObject("wizardUrl", linkTo(methodOn(TerminalWebController.class).getTerminalWizard()).toUri().toString());
+		mav.addObject("wizardUrl", linkTo(methodOn(SubscriptionWebController.class).getSubscriptionWizard()).toUri().toString());
 		return mav;
 	}
 
 	@GetMapping("/new")
-	public ModelAndView getTerminalWizard() {
-		ModelAndView mav = new ModelAndView("terminalWizard");
-		mav.addObject("saveUrl", linkTo(methodOn(TerminalController.class).postTerminal(null)).toUri().toString());
+	public ModelAndView getSubscriptionWizard() {
+		final ModelAndView mav = new ModelAndView("subscriptionWizard");
+		mav.addObject("saveUrl", linkTo(methodOn(SubscriptionController.class).postSubscription(null)).toUri().toString());
 		return mav;
 	}
 }

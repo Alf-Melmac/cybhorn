@@ -5,6 +5,9 @@ import de.inhorn.cybhorn.model.dtos.SubscriberPostDto;
 import de.inhorn.cybhorn.model.dtos.SubscriberViewDto;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * @author Alf
  * @since 17.03.2021
@@ -21,6 +24,9 @@ public class SubscriberAssembler {
 				.mnc(Integer.parseInt(subscriberPostDto.getMnc()))
 				.msin(Integer.parseInt(subscriberPostDto.getMsin()))
 				.terminal(TerminalAssembler.fromDto(subscriberPostDto.getTerminal()))
+				.subscription(SubscriptionAssembler.fromDto(subscriberPostDto.getSubscription()))
+				.secondsCalled(subscriberPostDto.getSecondsCalled())
+				.dataUsed(subscriberPostDto.getDataUsed())
 				.build();
 	}
 
@@ -28,6 +34,13 @@ public class SubscriberAssembler {
 		return SubscriberViewDto.builder()
 				.imsi(Long.toString(subscriber.getImsi()))
 				.terminal(TerminalAssembler.toDto(subscriber.getTerminal()))
+				.subscription(SubscriptionAssembler.toDto(subscriber.getSubscription()))
+				.secondsCalled(subscriber.getSecondsCalled())
+				.dataUsed(subscriber.getDataUsed())
 				.build();
+	}
+
+	public static List<SubscriberViewDto> toDtoList(List<Subscriber> subscriberList) {
+		return subscriberList.stream().map(SubscriberAssembler::toDto).collect(Collectors.toList());
 	}
 }

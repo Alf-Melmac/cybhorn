@@ -12,10 +12,22 @@ $(function () {
                 data: 'imsi'
             },
             {
-                data: 'terminal.name'
+                data: 'terminal.name',
+                render: function (data) {
+                    return '<a href="/terminals?filter=' + data + '">' + data + '</a>';
+                }
             },
             {
-                data: 'terminal.supportedRanTechnology'
+                data: 'subscription.name',
+                render: function (data) {
+                    return '<a href="/subscriptions?filter=' + data + '">' + data + '</a>';
+                }
+            },
+            {
+                data: 'secondsCalled'
+            },
+            {
+                data: 'dataUsed'
             }
         ]
     });

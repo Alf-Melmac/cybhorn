@@ -3,6 +3,9 @@ $(function () {
     const $terminals = $('#terminals');
 
     $terminals.DataTable({
+        search: {
+            search: searchParam
+        },
         ajax: {
             url: '/terminals/list',
             dataSrc: ""
@@ -12,7 +15,7 @@ $(function () {
                 data: 'name'
             },
             {
-                data: 'supportedRanTechnology'
+                data: 'supportedRanTechnologyName'
             }
         ]
     });

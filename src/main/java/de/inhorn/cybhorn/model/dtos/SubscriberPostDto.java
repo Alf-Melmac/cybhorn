@@ -17,4 +17,10 @@ public class SubscriberPostDto {
 	String msin;
 
 	TerminalDto terminal;
+
+	SubscriptionDto subscription;
+
+	int secondsCalled;
+
+	double dataUsed;
 }

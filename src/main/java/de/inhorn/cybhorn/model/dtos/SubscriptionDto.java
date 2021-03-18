@@ -1,6 +1,5 @@
 package de.inhorn.cybhorn.model.dtos;
 
-import de.inhorn.cybhorn.model.enums.RanTechnology;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,8 +14,10 @@ import lombok.experimental.SuperBuilder;
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 @Data
 @SuperBuilder
-public class TerminalDto extends AbstractIdEntityDto {
+public class SubscriptionDto extends AbstractIdEntityDto {
 	private final String name;
-
-	private final RanTechnology supportedRanTechnology;
+	private final int basicFee;
+	private final int secondsIncluded;
+	private final int pricePerSecond;
+	private final double dataVolume;
 }
