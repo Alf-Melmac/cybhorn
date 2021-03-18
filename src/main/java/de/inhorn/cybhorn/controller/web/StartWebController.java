@@ -20,6 +20,7 @@ public class StartWebController {
 		mav.addObject("subscribersUrl", linkTo(methodOn(SubscriberWebController.class).getSubscribers()).toUri().toString());
 		mav.addObject("subscriptionsUrl", linkTo(methodOn(SubscriptionWebController.class).getSubscriptions("")).toUri().toString());
 		mav.addObject("terminalsUrl", linkTo(methodOn(TerminalWebController.class).getTerminals("")).toUri().toString());
+		mav.addObject("sessionWizardUrl", linkTo(methodOn(SessionWebController.class).getSessionWizard()).toUri().toString());
 
 		return mav;
 	}
