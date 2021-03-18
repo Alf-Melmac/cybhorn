@@ -30,6 +30,10 @@ public class SubscriberWebController {
 	public ModelAndView getSubscribers() {
 		ModelAndView mav = new ModelAndView("subscribers");
 		mav.addObject("wizardUrl", linkTo(methodOn(SubscriberWebController.class).getSubscriberWizard()).toUri().toString());
+		mav.addObject("deleteUrl", linkTo(methodOn(SubscriberController.class).deleteSubscriber(Long.MAX_VALUE))
+				.toUri()
+				.toString()
+		.replace(Long.toString(Long.MAX_VALUE), "{id}"));
 		return mav;
 	}
 
