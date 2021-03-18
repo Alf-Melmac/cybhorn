@@ -11,16 +11,13 @@ import lombok.Value;
 @Value
 public class SubscriberPostDto {
 	String mcc;
-
 	String mnc;
-
 	String msin;
+	String firstName;
+	String lastName;
 
 	TerminalDto terminal;
-
 	SubscriptionDto subscription;
-
 	int secondsCalled;
-
 	double dataUsed;
 }
