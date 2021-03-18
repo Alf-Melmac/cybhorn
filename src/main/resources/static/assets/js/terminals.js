@@ -22,9 +22,14 @@ $(function () {
                 orderable: false,
                 searchable: false,
                 render: function (data) {
-                    return '<div class="js-tresh" data-id="' + data.id + '" type="button">' +
-                        '<em class="far fa-trash-alt"></em>' +
-                        '</div>';
+                    return '<div class ="row">' +
+                                '<div class="js-tresh ml-3" data-id="' + data.id + '" type="button">' +
+                                    '<em class="far fa-trash-alt"></em>' +
+                                '</div>' +
+                                '<div class="js-edit ml-3" data-id="' + data.id + '" type="button">' +
+                                    '<em class="fas fa-edit"></em>' +
+                                '</div>' + 
+                            '</div>';
                 }
             }
         ],
@@ -37,11 +42,20 @@ $(function () {
                         'Content-Type': 'application/json'
                     }
                 })
-                    .done($this.parents('tr').fadeOut())    // kein Fadeout wenn nicht geloescht wird
+                    .done($this.parents('tr').fadeOut())
                     .fail(response => alert(JSON.stringify(response) + '\nAction failed. Try again later\n'));
 
-                    //TODO  redirect zur Tabelle
-                    //      same for subscription 
+            });
+            $(row).find('.js-edit').on('click', function () {
+                const $this = $(this);
+                $.ajax(deleteUrl.replace('{id}', $this.data('id')), {
+                    method: 'EDIT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+
+                // TODO weiterleiten zu neuem Wizard
             });
         }
     });

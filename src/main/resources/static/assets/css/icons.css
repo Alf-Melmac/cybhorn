@@ -6,7 +6,7 @@
   font-size: 3em;
 }
 
-#tresh:hover {
+.js-tresh:hover .js-edit:hover{
   opacity: 80%;
 }
 
