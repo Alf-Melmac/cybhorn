@@ -18,6 +18,6 @@ public class SubscriptionDto extends AbstractIdEntityDto {
 	private final String name;
 	private final int basicFee;
 	private final int secondsIncluded;
-	private final double pricePerSecond;
+	private final double pricePerMinute;
 	private final double dataVolume;
 }

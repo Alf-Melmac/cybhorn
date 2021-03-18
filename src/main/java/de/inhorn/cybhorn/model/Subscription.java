@@ -22,8 +22,8 @@ public class Subscription extends AbstractIdEntity {
 	@Column(name = "seconds_included")
 	private int secondsIncluded;
 
-	@Column(name = "price_per_second")
-	private double pricePerSecond;
+	@Column(name = "price_per_minute")
+	private double pricePerMinute;
 
 	@Column(name = "data_volume")
 	private double dataVolume; // in MB
