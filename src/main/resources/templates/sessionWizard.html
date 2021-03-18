@@ -19,8 +19,8 @@
 					<label for="service">Service</label>
 					<select id="service" class="form-control custom-select" required>
 						<option selected disabled>Select...</option>
-						<option th:each="service : ${serviceList}"
-						        th:text="${service.getName()}"></option>
+						<option th:each="serviceType : ${T(de.inhorn.cybhorn.model.enums.ServiceType).values()}"
+						        th:value="${serviceType}" th:text="${serviceType.getName()}"></option>
 					</select>
 				</div>
 			</div>

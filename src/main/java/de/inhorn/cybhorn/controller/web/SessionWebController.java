@@ -25,7 +25,6 @@ public class SessionWebController {
 	@GetMapping("/new")
 	public ModelAndView getSessionWizard() {
 		final ModelAndView mav = new ModelAndView("sessionWizard");
-		mav.addObject("serviceList", sessionService.findAllOrdered());
 		mav.addObject("saveUrl", linkTo(methodOn(SessionController.class).postSession(null)).toUri().toString());
 		return mav;
 	}
