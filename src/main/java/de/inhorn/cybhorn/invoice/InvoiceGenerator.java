@@ -2,7 +2,6 @@ package de.inhorn.cybhorn.invoice;
 
 import de.inhorn.cybhorn.model.Subscriber;
 import de.inhorn.cybhorn.repository.SubscriberRepository;
-import de.inhorn.cybhorn.service.SubscriberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
