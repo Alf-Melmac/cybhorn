@@ -12,15 +12,26 @@ $(function () {
                 data: 'imsi'
             },
             {
+                data: 'name'
+            },
+            {
                 data: 'terminal.name',
                 render: function (data) {
-                    return '<a href="/terminals?filter=' + data + '">' + data + '</a>';
+                    if (data) {
+                        return '<a href="/terminals?filter=' + data + '">' + data + '</a>';
+                    } else {
+                        return '-';
+                    }
                 }
             },
             {
                 data: 'subscription.name',
                 render: function (data) {
-                    return '<a href="/subscriptions?filter=' + data + '">' + data + '</a>';
+                    if (data) {
+                        return '<a href="/subscriptions?filter=' + data + '">' + data + '</a>';
+                    } else {
+                        return '-';
+                    }
                 }
             },
             {

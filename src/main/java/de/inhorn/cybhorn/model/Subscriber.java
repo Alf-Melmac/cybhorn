@@ -14,6 +14,12 @@ public class Subscriber {
 	@Id
 	private long imsi;
 
+	@JoinColumn(name = "first_name")
+	private String firstName;
+
+	@JoinColumn(name = "last_name")
+	private String lastName;
+
 	@ManyToOne
 	@JoinColumn(name = "terminal_id")
 	private Terminal terminal;
@@ -29,7 +35,7 @@ public class Subscriber {
 	private double dataUsed = 0;  //in MB
 
 	@Builder
-	public Subscriber(int mcc, int mnc, long msin, Terminal terminal, Subscription subscription, int secondsCalled, double dataUsed) {
+	public Subscriber(int mcc, int mnc, long msin, String firstName, String lastName, Terminal terminal, Subscription subscription, int secondsCalled, double dataUsed) {
 		final String mccString = Integer.toString(mcc);
 		final String mncString = Integer.toString(mnc);
 		final int mncLength = mncString.length();
@@ -44,7 +50,8 @@ public class Subscriber {
 		}
 
 		this.imsi = Long.parseLong(mccString + mncString + msinString);
-		//TODO name
+		this.firstName = firstName;
+		this.lastName = lastName;
 
 		this.terminal = terminal;
 		this.subscription = subscription;
