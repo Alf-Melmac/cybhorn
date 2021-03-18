@@ -18,9 +18,10 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SubscriberService {
 	private final SubscriberRepository subscriberRepository;
+	private final SubscriberAssembler subscriberAssembler;
 
 	public Subscriber createSubscriber(SubscriberPostDto dto) {
-		final Subscriber subscriber = SubscriberAssembler.fromDto(dto);
+		final Subscriber subscriber = subscriberAssembler.fromDto(dto);
 
 		return subscriberRepository.save(subscriber);
 	}

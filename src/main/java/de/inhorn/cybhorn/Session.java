@@ -1,17 +1,14 @@
 package de.inhorn.cybhorn;
 
 import de.inhorn.cybhorn.model.Subscriber;
-
-import lombok.*;
-
-import de.inhorn.cybhorn.model.enums.SessionService;
+import de.inhorn.cybhorn.model.enums.ServiceType;
 
 public class Session {
 
 
-	public Session(int pDuration, SessionService pService, Subscriber pSubscriber) {
+	public Session(int pDuration, ServiceType pService, Subscriber pSubscriber) {
 		
-		if(pService == SessionService.Call){
+		if(pService == ServiceType.CALL){
 
 			pSubscriber.setSecondsCalled(pSubscriber.getSecondsCalled() + pDuration);
 			return;
@@ -35,7 +32,7 @@ public class Session {
 
 	}
 
-	public double calculateMaxThroughput(int pDuration, SessionService pService, Subscriber pSubscriber){
+	public double calculateMaxThroughput(int pDuration, ServiceType pService, Subscriber pSubscriber){
 		// calculate throughput
 		int r = (int)Math.random()*pSubscriber.getTerminal().getSupportedRanTechnology().getRandom().length;
 		double random = pSubscriber.getTerminal().getSupportedRanTechnology().getRandom()[r];

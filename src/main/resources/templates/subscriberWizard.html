@@ -36,18 +36,17 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label for="lastName">Last name</label>
-					<input id="lastName" class="form-control" type="number" placeholder="Doe">
+					<input id="lastName" class="form-control" type="text" placeholder="Doe">
 				</div>
 			</div>
 
-			<!--			TODO TERMINAL AND SUBSCRIPTION SAVB-->
 			<div class="form-row">
 				<div class="form-group col-md-12">
-					<label for="terminal">Terminal</label>
-					<select id="terminal" class="form-control custom-select">
+					<label for="terminalId">Terminal</label>
+					<select id="terminalId" class="form-control custom-select">
 						<option selected disabled>Select...</option>
 						<option th:each="terminal : ${terminalList}"
-						        th:text="${terminal.getName()}"></option>
+						        th:text="${terminal.getName()}" th:value="${terminal.getId()}"></option>
 					</select>
 					<small class="form-text text-muted">
 						Is a device missing? Add <a th:href="${terminalWizardUrl}">here</a>.
@@ -56,11 +55,11 @@
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-12">
-					<label for="subscription">Subscription</label>
-					<select id="subscription" class="form-control custom-select">
+					<label for="subscriptionId">Subscription</label>
+					<select id="subscriptionId" class="form-control custom-select">
 						<option selected disabled>Select...</option>
 						<option th:each="subscription : ${subscriptionList}"
-						        th:text="${subscription.getName()}"></option>
+						        th:text="${subscription.getName()}" th:value="${subscription.getId()}"></option>
 					</select>
 					<small class="form-text text-muted">
 						Is a subscription missing? Add <a th:href="${subscriptionWizardUrl}">here</a>.

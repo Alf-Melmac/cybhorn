@@ -22,6 +22,10 @@ public class SubscriptionWebController {
 		ModelAndView mav = new ModelAndView("subscriptions");
 		mav.addObject("searchParam", filter);
 		mav.addObject("wizardUrl", linkTo(methodOn(SubscriptionWebController.class).getSubscriptionWizard()).toUri().toString());
+		mav.addObject("deleteUrl", linkTo(methodOn(SubscriptionController.class).deleteSubscription(Long.MAX_VALUE))
+				.toUri()
+				.toString()
+		.replace(Long.toString(Long.MAX_VALUE), "{id}"));
 		return mav;
 	}
 
