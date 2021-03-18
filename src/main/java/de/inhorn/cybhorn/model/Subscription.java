@@ -23,13 +23,13 @@ public class Subscription extends AbstractIdEntity {
 	private int secondsIncluded;
 
 	@Column(name = "price_per_second")
-	private int pricePerSecond;
+	private double pricePerSecond;
 
 	@Column(name = "data_volume")
 	private double dataVolume; // in MB
 
 	@Builder
-	public Subscription(long id, String name, int basicFee, int secondsIncluded, int pricePerSecond, double dataVolume) {
+	public Subscription(long id, String name, int basicFee, int secondsIncluded, double pricePerSecond, double dataVolume) {
 		this.id = id;
 		this.name = name;
 		this.basicFee = basicFee;

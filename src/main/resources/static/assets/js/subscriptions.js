@@ -28,7 +28,8 @@ $(function () {
             },
             {
                 data: 'pricePerSecond',
-                render: function (data) {
+                render: function (data) { 
+                    debugger
                     return (data/60).toFixed(2) + " €";
                 }
             },
