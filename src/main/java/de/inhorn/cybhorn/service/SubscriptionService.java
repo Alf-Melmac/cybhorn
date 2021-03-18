@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * @author Alf
@@ -56,13 +57,51 @@ public class SubscriptionService {
 	public Subscription updateSubscription(@NonNull SubscriptionDto dto) {
 		Subscription subscription = findById(dto.getId());
 
+		boolean restricted = subscriberRepository.existsBySubscription(subscription);
+
 		DtoUtils.ifPresent(dto.getName(), subscription::setName);
-		DtoUtils.ifPresent(dto.getBasicFee(), subscription::setBasicFee);
-		DtoUtils.ifPresent(dto.getSecondsIncluded(), subscription::setSecondsIncluded);
-		DtoUtils.ifPresentDouble(dto.getPricePerMinute(), subscription::setPricePerMinute);
-		DtoUtils.ifPresentDouble(dto.getDataVolume(), subscription::setDataVolume);
+		DtoUtils.ifPresent(dto.getBasicFee(), (Consumer<Integer>) value -> {
+			if (restricted && higherIsWorse(subscription.getBasicFee(), value)) {
+				throw BusinessRuntimeException.builder().title("The basic fee cannot be deteriorated as long as subscribers still have this subscription.").build();
+			}
+			subscription.setBasicFee(value);
+		});
+		DtoUtils.ifPresent(dto.getSecondsIncluded(), (Consumer<Integer>) value -> {
+			if (restricted && lowerIsWorse(subscription.getSecondsIncluded(), value)) {
+				throw BusinessRuntimeException.builder().title("The minutes included cannot be deteriorated as long as subscribers still have this subscription.").build();
+			}
+			subscription.setSecondsIncluded(value);
+		});
+		DtoUtils.ifPresentDouble(dto.getPricePerMinute(), value -> {
+			if (restricted && higherIsWorse(subscription.getPricePerMinute(), value)) {
+				throw BusinessRuntimeException.builder().title("The price per minute cannot be deteriorated as long as subscribers still have this subscription.").build();
+			}
+			subscription.setPricePerMinute(value);
+		});
+		DtoUtils.ifPresentDouble(dto.getDataVolume(), value -> {
+			if (restricted && lowerIsWorse(subscription.getDataVolume(), value)) {
+				throw BusinessRuntimeException.builder().title("The data volume cannot be deteriorated as long as subscribers still have this subscription.").build();
+			}
+			subscription.setDataVolume(value);
+		});
 
 		return subscription;
+	}
+
+	private boolean higherIsWorse(int oldValue, int newValue) {
+		return oldValue < newValue;
+	}
+
+	private boolean lowerIsWorse(int oldValue, int newValue) {
+		return oldValue > newValue;
+	}
+
+	private boolean higherIsWorse(double oldValue, double newValue) {
+		return oldValue < newValue;
+	}
+
+	private boolean lowerIsWorse(double oldValue, double newValue) {
+		return oldValue > newValue;
 	}
 
 	/**

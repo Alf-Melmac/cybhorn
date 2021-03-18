@@ -20,7 +20,7 @@ $(function () {
             if (value && value !== '') {
                 userInput[key] = value;
             }
-            if (key == 'secondsIncluded' || key == 'duration'){
+            if (key === 'secondsIncluded' || key === 'duration'){
                 userInput[key] = userInput[key] * 60;
             }
         });
