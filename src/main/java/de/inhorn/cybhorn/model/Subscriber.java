@@ -51,4 +51,8 @@ public class Subscriber {
 		this.secondsCalled = secondsCalled;
 		this.dataUsed = dataUsed;
 	}
+
+	public void reset() {
+		//TODO
+	}
 }
