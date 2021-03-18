@@ -58,7 +58,11 @@ public class TerminalService {
 		final RanTechnology supportedRanTechnology = terminal.getSupportedRanTechnology();
 
 		final double[] signalQualities = supportedRanTechnology.getSignalQualities();
-		final double throughput = signalQualities[new Random().nextInt(signalQualities.length)];
+		final int length = signalQualities.length;
+		if (length == 0) {
+			return 0;
+		}
+		final double throughput = signalQualities[new Random().nextInt(length)];
 
 		// calculate throughput
 		return supportedRanTechnology.getMbits() * 8 * throughput;
