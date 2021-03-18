@@ -15,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 public class SubscriberViewDto {
 	private final String imsi;
 	private final String name;
+	private final String firstName;
+	private final String lastName;
 	private final TerminalDto terminal;
 	private final SubscriptionDto subscription;
 	private final int secondsCalled;

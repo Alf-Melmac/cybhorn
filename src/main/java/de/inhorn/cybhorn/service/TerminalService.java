@@ -6,6 +6,8 @@ import de.inhorn.cybhorn.model.Terminal;
 import de.inhorn.cybhorn.model.dtos.TerminalDto;
 import de.inhorn.cybhorn.model.enums.RanTechnology;
 import de.inhorn.cybhorn.repository.TerminalRepository;
+import de.inhorn.cybhorn.util.DtoUtils;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -35,6 +37,15 @@ public class TerminalService {
 
 	public List<Terminal> findAllOrdered() {
 		return terminalRepository.findAll(Sort.by("name"));
+	}
+
+	public Terminal updateTerminal(@NonNull TerminalDto dto) {
+		Terminal terminal = findById(dto.getId());
+
+		DtoUtils.ifPresent(dto.getName(), terminal::setName);
+		DtoUtils.ifPresent(dto.getSupportedRanTechnology(), terminal::setSupportedRanTechnology);
+
+		return terminal;
 	}
 
 	/**
