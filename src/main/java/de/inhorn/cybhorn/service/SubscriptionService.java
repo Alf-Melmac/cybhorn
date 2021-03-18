@@ -74,7 +74,7 @@ public class SubscriptionService {
 		if (!subscriberRepository.existsBySubscription(subscription)) {
 			subscriptionRepository.delete(subscription);
 		} else {
-			throw BusinessRuntimeException.builder().title("Subscription is still in use by at least one subscribers").build();
+			throw BusinessRuntimeException.builder().title("Subscription is still in use by at least one subscriber.").build();
 		}
 	}
 }

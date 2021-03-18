@@ -78,7 +78,7 @@ public class TerminalService {
 		if (!subscriberRepository.existsByTerminal(terminal)) {
 			terminalRepository.delete(terminal);
 		} else {
-			throw BusinessRuntimeException.builder().title("Terminal is still in use by at least one subscribers").build();
+			throw BusinessRuntimeException.builder().title("Terminal is still in use by at least one subscriber.").build();
 		}
 	}
 
