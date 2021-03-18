@@ -58,6 +58,8 @@ public class SubscriberAssembler {
 		return SubscriberViewDto.builder()
 				.imsi(Long.toString(subscriber.getImsi()))
 				.name(name)
+				.firstName(subscriber.getFirstName())
+				.lastName(subscriber.getLastName())
 				.terminal(TerminalAssembler.toDto(subscriber.getTerminal()))
 				.subscription(SubscriptionAssembler.toDto(subscriber.getSubscription()))
 				.secondsCalled(subscriber.getSecondsCalled())

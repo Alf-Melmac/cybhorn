@@ -23,7 +23,7 @@ $(function () {
         });
 
         $.ajax($wizard.data('saveurl'), {
-            method: 'POST',
+            method: $wizard.data('edit') ? 'PUT' : 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
