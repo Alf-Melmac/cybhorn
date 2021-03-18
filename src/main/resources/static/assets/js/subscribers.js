@@ -35,10 +35,19 @@ $(function () {
                 }
             },
             {
-                data: 'secondsCalled'
+                data: 'secondsCalled',
+                render: function (data) {
+                    if(data != 0) return parseInt(data/60) + 1;
+                    else return 0;
+                }
             },
             {
-                data: 'dataUsed'
+                data: 'dataUsed',
+                render: function (data) {
+                    
+                    if(data > 1000) return data/1000 + " GB";
+                    else return data + " MB";
+                }
             },
             {
                 data: null,

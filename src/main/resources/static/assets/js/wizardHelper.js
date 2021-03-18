@@ -20,6 +20,9 @@ $(function () {
             if (value && value !== '') {
                 userInput[key] = value;
             }
+            if (key == 'secondsIncluded' || key == 'pricePerSecond' || key == 'duration'){
+                userInput[key] = userInput[key] * 60;
+            }
         });
 
         $.ajax($wizard.data('saveurl'), {

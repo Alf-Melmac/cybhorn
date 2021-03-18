@@ -15,16 +15,30 @@ $(function () {
                 data: 'name'
             },
             {
-                data: 'basicFee'
+                data: 'basicFee',
+                render: function(data){
+                    return data + " €";
+                }
             },
             {
-                data: 'secondsIncluded'
+                data: 'secondsIncluded',
+                render: function (data) {
+                    return parseInt(data/60);
+                }
             },
             {
-                data: 'pricePerSecond'
+                data: 'pricePerSecond',
+                render: function (data) {
+                    return (data/60).toFixed(2) + " €";
+                }
             },
             {
-                data: 'dataVolume'
+                data: 'dataVolume',
+                render: function (data) {
+
+                    if(data > 1000) return data/1000 + " GB";
+                    else return data + " MB";
+                }
             },
             {
                 data: null,
