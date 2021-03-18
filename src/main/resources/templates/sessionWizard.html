@@ -9,6 +9,12 @@
 <nav th:replace="fragments/general.html :: nav"></nav>
 
 <section class="content-section">
+	<div class="container">
+		<a class="font-s" th:href="${overviewUrl}">
+			<em class="fas fa-chevron-circle-left"></em> Back
+		</a>
+	</div>
+
 	<div class="container mb-4">
 		<h1>New Session</h1>
 	</div>
@@ -20,7 +26,8 @@
 					<select id="imsi" class="form-control custom-select" required>
 						<option selected disabled>Select...</option>
 						<option th:each="subscriber : ${subscriberList}"
-						        th:value="${subscriber.getImsi()}" th:text="${'(' + subscriber.getImsi() + ') ' + subscriber.getName()}"></option>
+						        th:value="${subscriber.getImsi()}"
+						        th:text="${'(' + subscriber.getImsi() + ') ' + subscriber.getName()}"></option>
 					</select>
 				</div>
 				<div class="form-group col-md-12">

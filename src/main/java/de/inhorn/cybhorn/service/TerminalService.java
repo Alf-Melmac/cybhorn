@@ -41,6 +41,9 @@ public class TerminalService {
 	}
 
 	public Terminal findById(long id) {
+		if (!DtoUtils.isPresent(id)) {
+			return null;
+		}
 		return terminalRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
 	}
 

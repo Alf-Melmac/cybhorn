@@ -17,7 +17,7 @@ public final class DtoUtils {
 		return value != 0;
 	}
 
-	private static boolean isPresent(long value) {
+	public static boolean isPresent(long value) {
 		return value != 0;
 	}
 

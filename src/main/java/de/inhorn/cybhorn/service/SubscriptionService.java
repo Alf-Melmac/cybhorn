@@ -41,6 +41,9 @@ public class SubscriptionService {
 	}
 
 	public Subscription findById(long id) {
+		if (!DtoUtils.isPresent(id)) {
+			return null;
+		}
 		return subscriptionRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
 	}
 
