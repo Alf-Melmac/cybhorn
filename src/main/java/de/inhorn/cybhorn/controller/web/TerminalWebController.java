@@ -22,6 +22,10 @@ public class TerminalWebController {
 		ModelAndView mav = new ModelAndView("terminals");
 		mav.addObject("searchParam", filter);
 		mav.addObject("wizardUrl", linkTo(methodOn(TerminalWebController.class).getTerminalWizard()).toUri().toString());
+		mav.addObject("deleteUrl", linkTo(methodOn(TerminalController.class).deleteTerminal(Long.MAX_VALUE))
+				.toUri()
+				.toString()
+		.replace(Long.toString(Long.MAX_VALUE), "{id}"));
 		return mav;
 	}
 

@@ -6,6 +6,8 @@ import de.inhorn.cybhorn.repository.SubscriptionRepository;
 import de.inhorn.cybhorn.service.SubscriptionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -30,5 +32,11 @@ public class SubscriptionController {
 	@PostMapping
 	public SubscriptionDto postSubscription(@Valid @RequestBody SubscriptionDto subscription) {
 		return SubscriptionAssembler.toDto(subscriptionService.createSubscription(subscription));
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deleteSubscription(@PathVariable long id) {
+		subscriptionRepository.deleteById(id);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
