@@ -1,7 +1,11 @@
 package de.inhorn.cybhorn.invoice;
 
 import de.inhorn.cybhorn.model.Subscriber;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class Invoice {
 
     private Subscriber subscriber;
