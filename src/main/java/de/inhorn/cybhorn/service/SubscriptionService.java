@@ -43,7 +43,7 @@ public class SubscriptionService {
 		DtoUtils.ifPresent(dto.getName(), subscription::setName);
 		DtoUtils.ifPresent(dto.getBasicFee(), subscription::setBasicFee);
 		DtoUtils.ifPresent(dto.getSecondsIncluded(), subscription::setSecondsIncluded);
-		DtoUtils.ifPresent(dto.getPricePerSecond(), subscription::setPricePerSecond);
+		DtoUtils.ifPresent(dto.getPricePerMinute(), subscription::setPricePerMinute);
 		DtoUtils.ifPresentDouble(dto.getDataVolume(), subscription::setDataVolume);
 
 		return subscription;

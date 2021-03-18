@@ -27,10 +27,7 @@ $(function () {
                 }
             },
             {
-                data: 'pricePerSecond',
-                render: function (data) {
-                    return (data/60).toFixed(2) + " €";
-                }
+                data: 'pricePerMinute'
             },
             {
                 data: 'dataVolume',

@@ -17,7 +17,7 @@ public class Invoice {
         int secondsToBePayed = subscriber.getSecondsCalled() - subscriber.getSubscription().getSecondsIncluded();
 
         // calculate the costs of these seconds per started minute
-        this.totalcosts = Math.ceil(secondsToBePayed / 60) * (subscriber.getSubscription().getPricePerSecond()*60);
+        this.totalcosts = Math.ceil(secondsToBePayed / 60) * (subscriber.getSubscription().getPricePerMinute());
         if(totalcosts < 0) {
             totalcosts = 0;
         }
