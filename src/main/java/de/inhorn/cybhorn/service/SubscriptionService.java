@@ -5,6 +5,8 @@ import de.inhorn.cybhorn.exception.ResourceNotFoundException;
 import de.inhorn.cybhorn.model.Subscription;
 import de.inhorn.cybhorn.model.dtos.SubscriptionDto;
 import de.inhorn.cybhorn.repository.SubscriptionRepository;
+import de.inhorn.cybhorn.util.DtoUtils;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -33,5 +35,17 @@ public class SubscriptionService {
 
 	public Subscription findById(long id) {
 		return subscriptionRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+	}
+
+	public Subscription updateSubscription(@NonNull SubscriptionDto dto) {
+		Subscription subscription = findById(dto.getId());
+
+		DtoUtils.ifPresent(dto.getName(), subscription::setName);
+		DtoUtils.ifPresent(dto.getBasicFee(), subscription::setBasicFee);
+		DtoUtils.ifPresent(dto.getSecondsIncluded(), subscription::setSecondsIncluded);
+		DtoUtils.ifPresentDouble(dto.getPricePerMinute(), subscription::setPricePerMinute);
+		DtoUtils.ifPresentDouble(dto.getDataVolume(), subscription::setDataVolume);
+
+		return subscription;
 	}
 }

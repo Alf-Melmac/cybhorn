@@ -13,7 +13,7 @@
 		<h1>New Subscription</h1>
 	</div>
 	<div class="container">
-		<form id="wizard" th:data-saveurl="${saveUrl}">
+		<form id="wizard" th:data-saveurl="${saveUrl}" th:data-overviewurl="${overviewUrl}">
 			<div class="form-row">
 				<div class="form-group col-md-12">
 					<label for="name">Name</label>
@@ -31,13 +31,13 @@
 					</div>
 				</div>
 				<div class="form-group col-md-3">
-					<label for="secondsIncluded">Seconds Included</label>
+					<label for="secondsIncluded">Minutes Included</label>
 					<input id="secondsIncluded" class="form-control" type="number" value="0" required>
 				</div>
 				<div class="form-group col-md-3">
-					<label for="pricePerSecond">Price per second</label>
+					<label for="pricePerMinute">Price per minute</label>
 					<div class="input-group">
-						<input id="pricePerSecond" class="form-control" type="number" required>
+						<input id="pricePerMinute" class="form-control" type="number" step="0.01" required>
 						<div class="input-group-append">
 							<span class="input-group-text">€</span>
 						</div>
@@ -45,7 +45,12 @@
 				</div>
 				<div class="form-group col-md-3">
 					<label for="dataVolume">Data volume</label>
-					<input id="dataVolume" class="form-control" type="number" required>
+					<div class="input-group">
+						<input id="dataVolume" class="form-control" type="number" required>
+						<div class="input-group-append">
+							<span class="input-group-text">MB</span>
+						</div>
+					</div>
 				</div>
 			</div>
 

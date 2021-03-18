@@ -1,5 +1,6 @@
 package de.inhorn.cybhorn.model;
 
+import de.inhorn.cybhorn.exception.BusinessRuntimeException;
 import lombok.*;
 
 import javax.persistence.*;
@@ -57,6 +58,18 @@ public class Subscriber {
 		this.subscription = subscription;
 		this.secondsCalled = secondsCalled;
 		this.dataUsed = dataUsed;
+	}
+
+	public void addSecondsCalled(int seconds) {
+		secondsCalled += seconds;
+	}
+
+	public void useData(double data) {
+		final double dataUsage = dataUsed + data;
+		if (dataUsage > subscription.getDataVolume()) {
+			throw BusinessRuntimeException.builder().title("Data volume depleted.").build();
+		}
+		dataUsed = dataUsage;
 	}
 
 	public void reset() {

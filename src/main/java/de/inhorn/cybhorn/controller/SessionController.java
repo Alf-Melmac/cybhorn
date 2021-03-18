@@ -1,9 +1,11 @@
 package de.inhorn.cybhorn.controller;
 
-import de.inhorn.cybhorn.model.dtos.AbstractIdEntityDto;
-import de.inhorn.cybhorn.model.dtos.SubscriberPostDto;
+import de.inhorn.cybhorn.model.dtos.SessionDto;
+import de.inhorn.cybhorn.service.SessionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +21,12 @@ import javax.validation.Valid;
 @RequestMapping("/sessions")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SessionController {
+	private final SessionService sessionService;
+
 	@PostMapping
-	public AbstractIdEntityDto postSession(@Valid @RequestBody SubscriberPostDto session) {
-		return null; //TODO
+	public ResponseEntity<Void> postSession(@Valid @RequestBody SessionDto session) {
+		sessionService.bookSession(session);
+
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

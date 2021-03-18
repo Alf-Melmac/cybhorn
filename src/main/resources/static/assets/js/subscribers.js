@@ -35,10 +35,19 @@ $(function () {
                 }
             },
             {
-                data: 'secondsCalled'
+                data: 'secondsCalled',
+                render: function (data) {
+                    if(data != 0) return parseInt(data/60) + 1;
+                    else return 0;
+                }
             },
             {
-                data: 'dataUsed'
+                data: 'dataUsed',
+                render: function (data) {
+                    
+                    if(data > 1000) return data/1000 + " GB";
+                    else return data + " MB";
+                }
             },
             {
                 data: null,
@@ -68,16 +77,9 @@ $(function () {
                     .done($this.parents('tr').fadeOut())
                     .fail(response => alert(JSON.stringify(response) + '\nAction failed. Try again later\n'));
             });
-            $(row).find('.js-edit').on('click', function () {
-                const $this = $(this);
-                $.ajax(deleteUrl.replace('{id}', $this.data('id')), {
-                    method: 'EDIT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
 
-                // TODO weiterleiten zu neuem Wizard
+            $(row).find('.js-edit').on('click', function () {
+                window.location.href = editUrl.replace('{id}', $(this).data('id'));
             });
         }
     });

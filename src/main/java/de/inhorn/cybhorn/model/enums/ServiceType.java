@@ -12,5 +12,5 @@ public enum ServiceType {
 	VIDEO("Adaptive HD video", 100);
 
 	private final String name;
-	private final double required;
+	private final double requiredDataRate;
 }

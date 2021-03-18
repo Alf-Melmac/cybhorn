@@ -20,16 +20,23 @@ $(function () {
             if (value && value !== '') {
                 userInput[key] = value;
             }
+            if (key == 'secondsIncluded' || key == 'duration'){
+                userInput[key] = userInput[key] * 60;
+            }
         });
 
         $.ajax($wizard.data('saveurl'), {
-            method: 'POST',
+            method: $wizard.data('edit') ? 'PUT' : 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             data: JSON.stringify(userInput)
         })
-            .done(savedInput => console.log(savedInput)) //TODO Redirect to overview
-            .fail(response => alert(JSON.stringify(response) + '\nAction failed. Try again later\n' + JSON.stringify(event)));
+            .done(() => window.location.href = $wizard.data('overviewurl'))
+            .fail(response => {
+                const $errorToast = $('#errorToast');
+                $errorToast.find('.toast-body').text(response.responseJSON.errorMessage);
+                $errorToast.toast('show');
+            });
     });
 });

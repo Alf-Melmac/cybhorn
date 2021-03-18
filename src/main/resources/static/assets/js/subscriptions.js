@@ -15,16 +15,30 @@ $(function () {
                 data: 'name'
             },
             {
-                data: 'basicFee'
+                data: 'basicFee',
+                render: function(data){
+                    return data + " €";
+                }
             },
             {
-                data: 'secondsIncluded'
+                data: 'secondsIncluded',
+                render: function (data) {
+                    return parseInt(data/60);
+                }
             },
             {
-                data: 'pricePerSecond'
+                data: 'pricePerMinute',
+                render: function (data) {
+                    return data + " €";
+                }
             },
             {
-                data: 'dataVolume'
+                data: 'dataVolume',
+                render: function (data) {
+
+                    if(data > 1000) return data/1000 + " GB";
+                    else return data + " MB";
+                }
             },
             {
                 data: null,
@@ -55,15 +69,7 @@ $(function () {
                     .fail(response => alert(JSON.stringify(response) + '\nAction failed. Try again later\n'));
             });
             $(row).find('.js-edit').on('click', function () {
-                const $this = $(this);
-                $.ajax(deleteUrl.replace('{id}', $this.data('id')), {
-                    method: 'EDIT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-
-                // TODO weiterleiten zu neuem Wizard
+                window.location.href = editUrl.replace('{id}', $(this).data('id'));
             });
         }
     });

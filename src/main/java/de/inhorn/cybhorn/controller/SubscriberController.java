@@ -1,6 +1,7 @@
 package de.inhorn.cybhorn.controller;
 
 import de.inhorn.cybhorn.assembler.SubscriberAssembler;
+import de.inhorn.cybhorn.model.dtos.SubscriberEditDto;
 import de.inhorn.cybhorn.model.dtos.SubscriberPostDto;
 import de.inhorn.cybhorn.model.dtos.SubscriberViewDto;
 import de.inhorn.cybhorn.repository.SubscriberRepository;
@@ -31,8 +32,14 @@ public class SubscriberController {
 	}
 
 	@PostMapping
-	public SubscriberViewDto postSubscriber(@Valid @RequestBody SubscriberPostDto terminal) {
-		return SubscriberAssembler.toDto(subscriberService.createSubscriber(terminal));
+	public SubscriberViewDto postSubscriber(@Valid @RequestBody SubscriberPostDto subscriber) {
+		return SubscriberAssembler.toDto(subscriberService.createSubscriber(subscriber));
+	}
+
+	@PutMapping("/{id}")
+	public SubscriberViewDto updateSubscriber(@PathVariable long id, @Valid @RequestBody SubscriberEditDto subscriber) {
+		subscriber.setImsi(id);
+		return SubscriberAssembler.toDto(subscriberService.updateSubscriber(subscriber));
 	}
 
 	@DeleteMapping("/{id}")
