@@ -82,4 +82,9 @@ public class Subscriber {
 		}
 		dataUsed = dataUsage;
 	}
+
+	public void reset() {
+		secondsCalled = 0;
+		dataUsed = 0;
+	}
 }

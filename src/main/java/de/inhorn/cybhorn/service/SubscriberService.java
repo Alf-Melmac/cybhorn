@@ -67,6 +67,18 @@ public class SubscriberService {
 		return subscriber;
 	}
 
+	/**
+	 * Uses the {@link Subscriber#reset()} function to Reset all consumption values for the given subscriber
+	 *
+	 * @param imsi of the subscriber to reset
+	 * @return reset subscriber
+	 */
+	public Subscriber resetSubscriber(long imsi) {
+		Subscriber subscriber = findByImsi(imsi);
+		subscriber.reset();
+		return subscriber;
+	}
+
 	public void deleteById(long id) {
 		subscriberRepository.deleteById(id);
 	}
