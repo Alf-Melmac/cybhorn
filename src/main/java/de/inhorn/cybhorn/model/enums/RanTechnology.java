@@ -17,5 +17,5 @@ public enum RanTechnology {
 
 	private final String name;
 	private final double mbits;
-	private final double[] random;
+	private final double[] signalQualities;
 }
