@@ -33,6 +33,10 @@ $(function () {
             data: JSON.stringify(userInput)
         })
             .done(() => window.location.href = $wizard.data('overviewurl'))
-            .fail(response => alert(JSON.stringify(response) + '\nAction failed. Try again later\n' + JSON.stringify(event)));
+            .fail(response => {
+                const $errorToast = $('#errorToast');
+                $errorToast.find('.toast-body').text(response.responseJSON.errorMessage);
+                $errorToast.toast('show');
+            });
     });
 });

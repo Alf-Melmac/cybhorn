@@ -34,3 +34,10 @@
 body {
   background-color: lightgray;
 }
+
+.bottom-right {
+  position: fixed;
+  bottom: 1%;
+  right: 1%;
+}
+
