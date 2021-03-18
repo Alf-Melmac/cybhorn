@@ -37,6 +37,11 @@ public class TerminalController {
 		return TerminalAssembler.toDto(terminalService.createTerminal(terminal));
 	}
 
+	@PutMapping("/{id}")
+	public TerminalDto updateTerminal(@PathVariable long id, @Valid @RequestBody TerminalDto terminal) {
+		terminal.setId(id);
+		return TerminalAssembler.toDto(terminalService.updateTerminal(terminal));
+	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteTerminal(@PathVariable long id) {

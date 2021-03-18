@@ -1,5 +1,6 @@
 package de.inhorn.cybhorn.util;
 
+import de.inhorn.cybhorn.model.enums.RanTechnology;
 import lombok.experimental.UtilityClass;
 import org.thymeleaf.util.StringUtils;
 
@@ -38,12 +39,6 @@ public final class DtoUtils {
 		}
 	}
 
-	public static void ifPresentOrEmpty(String value, Consumer<String> consumer) {
-		if (isPresent((Object) value)) {
-			consumer.accept(value);
-		}
-	}
-
 	public static void ifPresent(int value, Consumer<Integer> consumer) {
 		if (isPresent(value)) {
 			consumer.accept(value);
@@ -56,13 +51,13 @@ public final class DtoUtils {
 		}
 	}
 
-	public static void ifPresentDouble(double value, Consumer<Double> consumer) {
-		if (isPresent(value)) {
-			consumer.accept(value);
+	public static void ifPresent(RanTechnology ranTechnology, Consumer<RanTechnology> consumer) {
+		if (isPresent(ranTechnology)) {
+			consumer.accept(ranTechnology);
 		}
 	}
 
-	public static void ifPresent(Boolean value, Consumer<Boolean> consumer) {
+	public static void ifPresentDouble(double value, Consumer<Double> consumer) {
 		if (isPresent(value)) {
 			consumer.accept(value);
 		}
