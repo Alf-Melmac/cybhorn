@@ -1,8 +1,6 @@
 package de.inhorn.cybhorn.controller;
 
 import de.inhorn.cybhorn.assembler.SubscriberAssembler;
-import de.inhorn.cybhorn.invoice.PDFCreator;
-import de.inhorn.cybhorn.model.Subscriber;
 import de.inhorn.cybhorn.model.dtos.SubscriberEditDto;
 import de.inhorn.cybhorn.model.dtos.SubscriberPostDto;
 import de.inhorn.cybhorn.model.dtos.SubscriberViewDto;
@@ -52,8 +50,7 @@ public class SubscriberController {
 
 	@GetMapping("/invoices")
 	public ResponseEntity<Void> getAllInvoices() {
-		invoiceGenerator.createInvoices().forEach(PDFCreator::createPDF);
-		subscriberService.findAll().forEach(Subscriber::reset);
+		invoiceGenerator.createInvoices();
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
