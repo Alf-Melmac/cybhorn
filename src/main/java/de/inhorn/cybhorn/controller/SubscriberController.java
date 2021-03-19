@@ -1,9 +1,12 @@
 package de.inhorn.cybhorn.controller;
 
 import de.inhorn.cybhorn.assembler.SubscriberAssembler;
+import de.inhorn.cybhorn.invoice.PDFCreator;
+import de.inhorn.cybhorn.model.Subscriber;
 import de.inhorn.cybhorn.model.dtos.SubscriberEditDto;
 import de.inhorn.cybhorn.model.dtos.SubscriberPostDto;
 import de.inhorn.cybhorn.model.dtos.SubscriberViewDto;
+import de.inhorn.cybhorn.service.InvoiceGenerator;
 import de.inhorn.cybhorn.service.SubscriberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,7 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SubscriberController {
 	private final SubscriberService subscriberService;
+	private final InvoiceGenerator invoiceGenerator;
 
 	@GetMapping("/list")
 	public List<SubscriberViewDto> getAllSubscribers() {
@@ -43,6 +47,13 @@ public class SubscriberController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteSubscriber(@PathVariable long id) {
 		subscriberService.deleteById(id);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	@GetMapping("/invoices")
+	public ResponseEntity<Void> getAllInvoices() {
+		invoiceGenerator.createInvoices().forEach(PDFCreator::createPDF);
+		subscriberService.findAll().forEach(Subscriber::reset);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

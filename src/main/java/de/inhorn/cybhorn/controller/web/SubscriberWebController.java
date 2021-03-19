@@ -41,6 +41,7 @@ public class SubscriberWebController {
 				.toUri()
 				.toString()
 				.replace(Long.toString(Long.MAX_VALUE), "{id}"));
+		mav.addObject("invoiceUrl", linkTo(methodOn(SubscriberController.class).getAllInvoices()).toUri().toString());
 		return mav;
 	}
 

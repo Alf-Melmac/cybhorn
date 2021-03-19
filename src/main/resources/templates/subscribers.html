@@ -39,15 +39,33 @@
 			</thead>
 		</table>
 	</div>
+
+	<div class="container">
+		<a id="generate-invoices" type="button" class="btn btn-primary rounded-pill mt-3">
+			<em class="fas fa-file-invoice-dollar"></em> Generate Invoices
+		</a>
+	</div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<div class="position-relative" aria-live="polite" aria-atomic="true">
+	<div id="savedToast" class="toast bottom-right" data-delay="2000">
+		<div class="toast-header">
+			<span class="rounded mr-2 text-success fas fa-dragon"></span>
+			<strong class="mr-auto">Invoices will be generated</strong>
+			<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	</div>
+</div>
+
+<script th:replace="fragments/general.html :: scripts"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.js"></script>
 <script th:inline="javascript">
 	/*<![CDATA[*/
 	const deleteUrl = /*[[${deleteUrl}]]*/ '';
 	const editUrl = /*[[${editUrl}]]*/ '';
+	const invoiceUrl = /*[[${invoiceUrl}]]*/ '';
 	/*]]>*/
 </script>
 <script th:src="@{/assets/js/subscribers.js}"></script>

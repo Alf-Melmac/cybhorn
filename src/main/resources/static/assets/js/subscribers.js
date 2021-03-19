@@ -83,4 +83,14 @@ $(function () {
             });
         }
     });
+
+    $('#generate-invoices').on('click', function () {
+        $.ajax(invoiceUrl, {
+            method: 'GET'
+        })
+            .done(() => {
+                $('#savedToast').toast('show');
+                setTimeout("window.location.reload();", 4000);
+            });
+    });
 });
