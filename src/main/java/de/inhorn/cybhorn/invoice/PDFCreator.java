@@ -96,7 +96,7 @@ public class PDFCreator {
 			cell = new PdfPCell(new Phrase(INDENTATION, String.valueOf(subscriber.getDataUsed()), FontFactory.getFont(FontFactory.COURIER, SIZE_CELL)));
 			cell.setFixedHeight(BIG_HEIGHT);
 			table.addCell(cell);
-			cell = new PdfPCell(new Phrase(INDENTATION, "Total: Voice Minute Used", FontFactory.getFont(FontFactory.COURIER, SIZE_CELL)));
+			cell = new PdfPCell(new Phrase(INDENTATION, "Total Voice Minute Used", FontFactory.getFont(FontFactory.COURIER, SIZE_CELL)));
 			cell.setFixedHeight(SMALL_HEIGHT);
 			table.addCell(cell);
 			cell = new PdfPCell(new Phrase(INDENTATION, String.valueOf(subscriber.getSecondsCalled() / 60), FontFactory.getFont(FontFactory.COURIER, SIZE_CELL)));
