@@ -19,6 +19,9 @@ public class Invoice {
 		// calculate the seconds to be payed
 		final Subscription subscription = subscriber.getSubscription();
 
+		if (subscription == null) {
+			return;
+		}
 		// add basic fee for subscription
 		totalCosts = subscription.getBasicFee();
 
