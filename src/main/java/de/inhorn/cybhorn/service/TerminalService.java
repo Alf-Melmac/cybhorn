@@ -99,6 +99,6 @@ public class TerminalService {
 		final double throughput = signalQualities[new Random().nextInt(length)];
 
 		// calculate throughput
-		return supportedRanTechnology.getMbits() * 8 * throughput;
+		return supportedRanTechnology.getMbits() * throughput;
 	}
 }

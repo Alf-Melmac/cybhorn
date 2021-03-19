@@ -38,9 +38,11 @@ public class SessionService {
 
 		double maxThroughput = terminalService.calculateMaxThroughput(subscriber.getTerminal());
 		if (maxThroughput >= session.getServiceType().getRequiredDataRate()) {
-			subscriber.useData(maxThroughput * session.getDuration());
+
+
+			subscriber.useData(session.getServiceType().getRequiredDataRate() / 8 * session.getDuration());
 		} else {
-			throw BusinessRuntimeException.builder().title("Connection too slow, go up a mountain.").build();
+			throw BusinessRuntimeException.builder().title("Connection too slow, go up a mountain. \n Required:" + session.getServiceType().getRequiredDataRate() + "  Your connection:" + maxThroughput*8).build();
 		}
 	}
 }
