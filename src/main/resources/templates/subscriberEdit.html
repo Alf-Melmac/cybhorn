@@ -42,7 +42,7 @@
 				<div class="form-group col-md-12">
 					<label for="terminalId">Terminal</label>
 					<select id="terminalId" class="form-control custom-select">
-						<option selected disabled
+						<option th:unless="${subscriber.getTerminal() == null}" selected disabled
 						        th:text="${subscriber.getTerminal().getName()}"
 						        th:value="${subscriber.getTerminal().getId()}"></option>
 						<option th:each="terminal : ${terminalList}"
@@ -57,7 +57,7 @@
 				<div class="form-group col-md-12">
 					<label for="subscriptionId">Subscription</label>
 					<select id="subscriptionId" class="form-control custom-select">
-						<option selected disabled
+						<option th:unless="${subscriber.getSubscription() == null}" selected disabled
 						        th:text="${subscriber.getSubscription().getName()}"
 						        th:value="${subscriber.getSubscription().getId()}"></option>
 						<option th:each="subscription : ${subscriptionList}"

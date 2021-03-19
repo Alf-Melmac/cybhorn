@@ -12,7 +12,8 @@ $(function () {
                 data: 'imsi'
             },
             {
-                data: 'name'
+                data: 'name',
+                render: $.fn.dataTable.render.text()
             },
             {
                 data: 'terminal.name',
@@ -75,7 +76,11 @@ $(function () {
                     }
                 })
                     .done($this.parents('tr').fadeOut())
-                    .fail(response => alert(JSON.stringify(response) + '\nAction failed. Try again later\n'));
+                    .fail(response => {
+                        const $errorToast = $('#errorToast');
+                        $errorToast.find('.toast-body').text(response.responseJSON.errorMessage);
+                        $errorToast.toast('show');
+                    });
             });
 
             $(row).find('.js-edit').on('click', function () {
