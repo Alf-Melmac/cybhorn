@@ -29,6 +29,7 @@ import java.util.function.Consumer;
 public class SubscriptionService {
 	private final SubscriptionRepository subscriptionRepository;
 	private final SubscriberRepository subscriberRepository;
+	private final InvoiceGenerator invoiceGenerator;
 
 	public Subscription createSubscription(SubscriptionDto dto) {
 		return subscriptionRepository.save(SubscriptionAssembler.fromDto(dto));
@@ -85,6 +86,7 @@ public class SubscriptionService {
 			subscription.setDataVolume(value);
 		});
 
+		findAllBySubscription(subscription).forEach(invoiceGenerator::createInvoice);
 		return subscription;
 	}
 
@@ -102,6 +104,16 @@ public class SubscriptionService {
 
 	private boolean lowerIsWorse(double oldValue, double newValue) {
 		return oldValue > newValue;
+	}
+
+	/**
+	 * Returns all {@link Subscriber}s found by the given {@link Subscription}
+	 *
+	 * @param subscription to search for
+	 * @return all subscribers that have the given subscription
+	 */
+	private List<Subscriber> findAllBySubscription(Subscription subscription) {
+		return subscriberRepository.findAllBySubscription(subscription);
 	}
 
 	/**
