@@ -42,7 +42,7 @@ public class SessionService {
 
 			subscriber.useData(session.getServiceType().getRequiredDataRate() / 8 * session.getDuration());
 		} else {
-			throw BusinessRuntimeException.builder().title("Connection too slow, go up a mountain. \n Required: " + session.getServiceType().getRequiredDataRate() + "MB    Your connection: " + maxThroughput + "MB").build();
+			throw BusinessRuntimeException.builder().title("Connection too slow, go up a mountain. \n Required: " + session.getServiceType().getRequiredDataRate() + "MBBit/s    Your connection: " + maxThroughput + "MBit/s").build();
 		}
 	}
 }
