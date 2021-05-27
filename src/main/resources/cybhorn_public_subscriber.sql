@@ -1,0 +1,6 @@
+INSERT INTO public.subscriber (imsi, terminal_id, seconds_called, data_used, subscription_id, first_name, last_name) VALUES (26242165161332, 1, 0, 900, 3, 'Asel', 'Jež');
+INSERT INTO public.subscriber (imsi, terminal_id, seconds_called, data_used, subscription_id, first_name, last_name) VALUES (586458549630047, 3, 300, 1950, 2, 'Herbert', 'Kunsili');
+INSERT INTO public.subscriber (imsi, terminal_id, seconds_called, data_used, subscription_id, first_name, last_name) VALUES (26242165465121, 3, 960, 750, 27, 'Doroteja', 'MacBay');
+INSERT INTO public.subscriber (imsi, terminal_id, seconds_called, data_used, subscription_id, first_name, last_name) VALUES (262421321651010, 14, 9900, 75, 26, 'Peter<script>alert(''hi'')</script>', 'Bahl');
+INSERT INTO public.subscriber (imsi, terminal_id, seconds_called, data_used, subscription_id, first_name, last_name) VALUES (310170845466094, 15, 7380, 0, 3, 'Gundular', 'Herberto');
+INSERT INTO public.subscriber (imsi, terminal_id, seconds_called, data_used, subscription_id, first_name, last_name) VALUES (502130123456789, 1, 480120, 210, 2, 'Max', 'Müller');
